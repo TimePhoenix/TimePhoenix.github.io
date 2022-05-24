@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?90c91c134971ea31baf103ce4175c5a3";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+  
+
+  
+      
+  
+  <title>TimePhoenix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="TimePhoenix">
+<meta property="og:url" content="http://decodezoom.cn/page/2/index.html">
+<meta property="og:site_name" content="TimePhoenix">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="TimePhoenix" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico"> 
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TimePhoenix</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://decodezoom.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-认识RISC-V" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/21/%E8%AE%A4%E8%AF%86RISC-V/" class="article-date">
+  <time class="dt-published" datetime="2021-07-21T07:15:04.355Z" itemprop="datePublished">2021-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/07/21/%E8%AE%A4%E8%AF%86RISC-V/">认识RISC-V</a>
+    </h1>
+  
+
+
+
+  <link rel="icon" href="images/favicon.ico">    
+
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#yi-risc-v-zhi-ling-ji-te-dian">一、RISC-V指令集特点</a><ul>
+<li><a href="#r-type">(R-type)</a></li>
+<li><a href="#s-type">(S-type)</a></li>
+<li><a href="#i-type">(I-type)</a></li>
+<li><a href="#u-type">(U-type)</a></li>
+</ul>
+</li>
+<li><a href="#er-she-ji-jian-dan-de-risc-v-zhi-ling">二、设计简单的RISC-V指令</a><ul>
+<li><a href="#liu-shui-xian-zhi-ling">流水线指令</a></li>
+</ul>
+</li>
+<li><a href="#fu-biao">附表</a><ul>
+<li><a href="#risc-v-chang-yong-ji-cun-qi-diao-yong-ming">RISC-V常用寄存器调用名</a></li>
+<li><a href="#guan-yu-r-i-u-s-jian-dan-jie-shi">关于R、I、U、S简单解释</a></li>
+<li><a href="#risc-v-shou-ce-zhai-yao">RISC-V手册摘要</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+</div>
+
+
+
+<h2><span id="yi-risc-v-zhi-ling-ji-te-dian">一、RISC-V指令集特点</span><a href="#yi-risc-v-zhi-ling-ji-te-dian" class="header-anchor"></a></h2><p>RISC-V拥有规整的指令编码，能在流水线中今早尽快地读取通用寄存器。</p>
+<p>RISC-V指令编码基本方式（举例）：</p>
+<p>三操作数指令：</p>
+<h3><span id="r-type">(R-type)</span><a href="#r-type" class="header-anchor"></a></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>31     -      25</th>
+<th>24 - 20</th>
+<th>19-15</th>
+<th>14-12</th>
+<th>11-7</th>
+<th>6-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>function7</td>
+<td>rs2</td>
+<td>rs1</td>
+<td>funct3</td>
+<td>rd</td>
+<td>opcode</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>双操作数指令：</p>
+<h3><span id="s-type">(S-type)</span><a href="#s-type" class="header-anchor"></a></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>31     -   25</th>
+<th>24-20</th>
+<th>19-15</th>
+<th>14-12</th>
+<th>11-7</th>
+<th>6-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Imm[11:5]</td>
+<td>rs2</td>
+<td>rs1</td>
+<td>funct3</td>
+<td>Imm[4:0]</td>
+<td>opcode</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3><span id="i-type">(I-type)</span><a href="#i-type" class="header-anchor"></a></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>31-20</th>
+<th>19-15</th>
+<th>14-12</th>
+<th>11-7</th>
+<th>6-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Imm[11:0]</td>
+<td>rs1</td>
+<td>funct3</td>
+<td>rd</td>
+<td>opcode</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>单操作数指令</p>
+<h3><span id="u-type">(U-type)</span><a href="#u-type" class="header-anchor"></a></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>31                 -              12</th>
+<th>11-7</th>
+<th>6-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Imm[31:12]</td>
+<td>rd</td>
+<td>opcode</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2><span id="er-she-ji-jian-dan-de-risc-v-zhi-ling">二、设计简单的RISC-V指令</span><a href="#er-she-ji-jian-dan-de-risc-v-zhi-ling" class="header-anchor"></a></h2><script type="math/tex; mode=display">
+addi \quad  x18,x0,5\\
+sw\quad x18,8(x0)\\
+lw\quad x19,8(x0)\\
+or \quad x20,x18\\
+beq \quad x19,x20,-16</script><script type="math/tex; mode=display">
+addi \quad x18,x0,x5</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>31-20</th>
+<th>19-15</th>
+<th>14-12</th>
+<th>11-7</th>
+<th>6-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Imm[11:0]</td>
+<td>rs1</td>
+<td>funct3</td>
+<td>rd</td>
+<td>opcode</td>
+</tr>
+<tr>
+<td>000000000101</td>
+<td>00000</td>
+<td>000</td>
+<td>10010</td>
+<td>0010011</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>转换为16进制地址：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>00500913</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<script type="math/tex; mode=display">
+sw\quad x18,8(x0)</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>31     -   25</th>
+<th>24-20</th>
+<th>19-15</th>
+<th>14-12</th>
+<th>11-7</th>
+<th>6-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Imm[11:5]</td>
+<td>rs2</td>
+<td>rs1</td>
+<td>funct3</td>
+<td>Imm[4:0]</td>
+<td>opcode</td>
+</tr>
+<tr>
+<td>0000000</td>
+<td>10010</td>
+<td>00000</td>
+<td>010</td>
+<td>01000</td>
+<td>0100011</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>转换为16进制地址：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>01202423</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<script type="math/tex; mode=display">
+lw\quad x19,8(x0)</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>31-20</th>
+<th>19-15</th>
+<th>14-12</th>
+<th>11-7</th>
+<th>6-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Imm[11:0]</td>
+<td>rs1</td>
+<td>funct3</td>
+<td>rd</td>
+<td>opcode</td>
+</tr>
+<tr>
+<td>000000001000</td>
+<td>00000</td>
+<td>010</td>
+<td>10011</td>
+<td>0000011</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>转换为16进制地址为</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>00802983</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<script type="math/tex; mode=display">
+or\quad x20,x18,x19</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>31     -      25</th>
+<th>24 - 20</th>
+<th>19-15</th>
+<th>14-12</th>
+<th>11-7</th>
+<th>6-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>function7</td>
+<td>rs2</td>
+<td>rs1</td>
+<td>funct3</td>
+<td>rd</td>
+<td>opcode</td>
+</tr>
+<tr>
+<td>0000000</td>
+<td>10011</td>
+<td>10010</td>
+<td>110</td>
+<td>10100</td>
+<td>0110011</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>转换为16进制位</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>001396A33</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<script type="math/tex; mode=display">
+beq \quad x19,x20,-16</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>31     -   25</th>
+<th>24-20</th>
+<th>19-15</th>
+<th>14-12</th>
+<th>11-7</th>
+<th>6-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Imm[11:5]</td>
+<td>rs2</td>
+<td>rs1</td>
+<td>funct3</td>
+<td>Imm[4:0]</td>
+<td>opcode</td>
+</tr>
+<tr>
+<td>1111111</td>
+<td>10100</td>
+<td>10011</td>
+<td>000</td>
+<td>10001</td>
+<td>1100011</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>转化为16进制为</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>FF4988E3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3><span id="liu-shui-xian-zhi-ling">流水线指令</span><a href="#liu-shui-xian-zhi-ling" class="header-anchor"></a></h3><script type="math/tex; mode=display">
+addi\quad x1,x0,2\\
+addi\quad x3,x0,6\\
+addi\quad x5,x0,10\\
+addi \quad x6,x0,2\\
+addi \quad x0,x0,0\\
+sub \quad x2,x1,x3\\
+addi\quad x6,x0,12\\</script><p>单个指令具体设计参考上文。</p>
+<p>流水线时空图</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ADDI</td>
+<td>IF</td>
+<td>ID</td>
+<td>EX</td>
+<td>M</td>
+<td>WB</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADDI</td>
+<td></td>
+<td>IF</td>
+<td>ID</td>
+<td>EX</td>
+<td>M</td>
+<td>WB</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADDI</td>
+<td></td>
+<td></td>
+<td>IF</td>
+<td>ID</td>
+<td>EX</td>
+<td>M</td>
+<td>WB</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADDI</td>
+<td></td>
+<td></td>
+<td></td>
+<td>IF</td>
+<td>ID</td>
+<td>EX</td>
+<td>M</td>
+<td>WB</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADDI（空操作）</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>IF</td>
+<td>ID</td>
+<td>EX</td>
+<td>M</td>
+<td>WB</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SUB</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>IF</td>
+<td>ID</td>
+<td>EX</td>
+<td>M</td>
+<td>WB</td>
+<td></td>
+</tr>
+<tr>
+<td>ADDI</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>IF</td>
+<td>ID</td>
+<td>EX</td>
+<td>M</td>
+<td>WB</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2><span id="fu-biao">附表</span><a href="#fu-biao" class="header-anchor"></a></h2><h3><span id="risc-v-chang-yong-ji-cun-qi-diao-yong-ming">RISC-V常用寄存器调用名</span><a href="#risc-v-chang-yong-ji-cun-qi-diao-yong-ming" class="header-anchor"></a></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>寄存器</th>
+<th>调用名字</th>
+<th>用途</th>
+<th>存储者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x0</td>
+<td>zero</td>
+<td>常数0</td>
+<td>N.A.</td>
+</tr>
+<tr>
+<td>x1</td>
+<td>ra</td>
+<td>返回地址</td>
+<td>Caller</td>
+</tr>
+<tr>
+<td>x2</td>
+<td>sp</td>
+<td>栈指针</td>
+<td>Callee</td>
+</tr>
+<tr>
+<td>x3</td>
+<td>gp</td>
+<td>全局指针</td>
+<td>/</td>
+</tr>
+<tr>
+<td>x4</td>
+<td>tp</td>
+<td>线程指针</td>
+<td>/</td>
+</tr>
+<tr>
+<td>x5-x7</td>
+<td>t0-t2</td>
+<td>临时存储</td>
+<td>Caller</td>
+</tr>
+<tr>
+<td>x8</td>
+<td>s0/fp</td>
+<td>保存用寄存器/帧指针（配合栈指针界定一个函数的栈）</td>
+<td>Callee</td>
+</tr>
+<tr>
+<td>x9</td>
+<td>s1</td>
+<td>保存用寄存器</td>
+<td>Callee</td>
+</tr>
+<tr>
+<td>x10-x11</td>
+<td>a0-a1</td>
+<td>函数参数/返回值</td>
+<td>Caller</td>
+</tr>
+<tr>
+<td>x12-x17</td>
+<td>a2-a7</td>
+<td>函数参数</td>
+<td>Caller</td>
+</tr>
+<tr>
+<td>x18-x27</td>
+<td>s2-s11</td>
+<td>保存用寄存器</td>
+<td>Callee</td>
+</tr>
+<tr>
+<td>x28-x31</td>
+<td>t3-t6</td>
+<td>临时存储</td>
+<td>Caller</td>
+</tr>
+<tr>
+<td>f0-f7</td>
+<td>ft0-ft7</td>
+<td>浮点临时存储</td>
+<td>Caller</td>
+</tr>
+<tr>
+<td>f8-f9</td>
+<td>fs0-fs1</td>
+<td>浮点保存用寄存器</td>
+<td>Callee</td>
+</tr>
+<tr>
+<td>f10-f11</td>
+<td>fa0-fa1</td>
+<td>浮点函数参数/返回值</td>
+<td>Caller</td>
+</tr>
+<tr>
+<td>f12-f17</td>
+<td>fa2-fa7</td>
+<td>浮点函数参数</td>
+<td>Caller</td>
+</tr>
+<tr>
+<td>f18-f27</td>
+<td>fs2-fs11</td>
+<td>浮点保存用寄存器</td>
+<td>Callee</td>
+</tr>
+<tr>
+<td>f28-f31</td>
+<td>ft8-ft11</td>
+<td>浮点临时存储</td>
+<td>Caller</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3><span id="guan-yu-r-i-u-s-jian-dan-jie-shi">关于R、I、U、S简单解释</span><a href="#guan-yu-r-i-u-s-jian-dan-jie-shi" class="header-anchor"></a></h3><p>R即Reg相关；I即立即数相关；S存储相关；B分支相关；U高位数相关（因为一条32位指令中无法表示高达32位的数据）；J跳转相关。</p>
+<h3><span id="risc-v-shou-ce-zhai-yao">RISC-V手册摘要</span><a href="#risc-v-shou-ce-zhai-yao" class="header-anchor"></a></h3><h4><span id="zhi-ling-lei-xing">指令类型</span><a href="#zhi-ling-lei-xing" class="header-anchor"></a></h4><p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210530104645973.png" alt="image-20210530104645973"></p>
+<h4><span id="ji-ben-zhi-ling-ji">基本指令集</span><a href="#ji-ben-zhi-ling-ji" class="header-anchor"></a></h4><p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210530104811462.png" alt="image-20210530104811462"></p>
+<p>手册其他详细内容请参照 <a target="_blank" rel="noopener" href="https://riscv.org/technical/specifications/">RISC-V手册</a> —本附录内容是我结合摘自RISC-V手册（中文版）第 58 页写的，如有错误请读者斧正</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://decodezoom.cn/2021/07/21/%E8%AE%A4%E8%AF%86RISC-V/" data-id="cl3k72765000axgvogimj7kvu" data-title="认识RISC-V" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/21/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2021-07-21T07:15:04.345Z" itemprop="datePublished">2021-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/07/21/hello-world/">Hello World</a>
+    </h1>
+  
+
+
+
+  <link rel="icon" href="images/favicon.ico">    
+
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to Blog!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://decodezoom.cn/2021/07/21/hello-world/" data-id="cl3k727580000xgvog4g1apx8" data-title="Hello World" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-electronics_mark" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/21/electronics_mark/" class="article-date">
+  <time class="dt-published" datetime="2021-07-21T07:15:04.345Z" itemprop="datePublished">2021-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/07/21/electronics_mark/">电工电子</a>
+    </h1>
+  
+
+
+
+  <link rel="icon" href="images/favicon.ico">    
+
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#dian-zi-bu-fen">电子部分</a><ul>
+<li><a href="#ji-cheng-yun-suan-fang-da-qi">集成运算放大器</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+</div>
+
+
+
+<h2><span id="dian-zi-bu-fen">电子部分</span><a href="#dian-zi-bu-fen" class="header-anchor"></a></h2><h3><span id="ji-cheng-yun-suan-fang-da-qi">集成运算放大器</span><a href="#ji-cheng-yun-suan-fang-da-qi" class="header-anchor"></a></h3><ul>
+<li>反相比例运算</li>
+</ul>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210619164900386.png" alt="image-20210619164900386"></p>
+<script type="math/tex; mode=display">
+u_o = \frac {- R_F}{R_1}\times u_i</script><ul>
+<li>同相比例运算</li>
+</ul>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210619165249565.png" alt="image-20210619165249565"></p>
+<script type="math/tex; mode=display">
+u_o = (1+\frac {R_F}{R_1})\times u_i</script><p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210619165423510.png" alt="image-20210619165423510"></p>
+<script type="math/tex; mode=display">
+u_o = (1+\frac {R_F}{R_1})\times (\frac {R_4}{R_3+R_4})u_i</script><ul>
+<li>反向求和运算</li>
+</ul>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210619165640595.png" alt="image-20210619165640595"></p>
+<script type="math/tex; mode=display">
+u_0 = -(\frac {R_f}{R_{11}}\times u_{i1} + \frac {R_f}{R_{12}}u_{i2})\\
+当R_{11} = R_{12}=R_f=R 时\\
+u_0=-(u_{i1}+u_{i2})</script><ul>
+<li>同相求和运算</li>
+</ul>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210619170214464.png" alt="image-20210619170214464"></p>
+<script type="math/tex; mode=display">
+u_0=(1+\frac {R_f}{R_1})(\frac {R_{12}}{R_{11}+R_{12}}u_{i1}+\frac {R_{11}}{R_{11}+R_{12}}u_{i2})</script><ul>
+<li>减法电路（差动放大器）</li>
+</ul>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210619170800106.png" alt="image-20210619170800106"></p>
+<script type="math/tex; mode=display">
+u_{o} = (1+\frac {R_f}{R_1})\frac {R_3}{R_2 +R_3}u_{i2}-\frac {R_f}{R_1}u_{i1}</script><ul>
+<li>积分运算电路</li>
+</ul>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210619171056571.png" alt="image-20210619171056571"></p>
+<script type="math/tex; mode=display">
+u_0 = -\frac {1}{RC}\int_{}{}u_i dt</script><ul>
+<li>微分运算电路</li>
+</ul>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210619171445821.png" alt="image-20210619171445821"></p>
+<script type="math/tex; mode=display">
+u_0 = -RC  \frac{du_i}{dt}</script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://decodezoom.cn/2021/07/21/electronics_mark/" data-id="cl3k7275p0001xgvo3ptx8puc" data-title="电工电子" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-thoughts_mao" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/21/thoughts_mao/" class="article-date">
+  <time class="dt-published" datetime="2021-07-21T07:15:04.345Z" itemprop="datePublished">2021-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/07/21/thoughts_mao/">毛概重点</a>
+    </h1>
+  
+
+
+
+  <link rel="icon" href="images/favicon.ico">    
+
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#mao-ze-dong-si-xiang-zhu-yao-nei-rong">—毛泽东思想主要内容</a></li>
+<li><a href="#mao-ze-dong-si-xiang-huo-de-ling-hun-11">毛泽东思想活的灵魂（11）</a></li>
+<li><a href="#mao-ze-dong-si-xiang-de-li-shi-di-wei-13">毛泽东思想的历史地位（13）</a></li>
+<li><a href="#xin-min-zhu-zhu-yi-de-zong-lu-xian-24">新民主主义的总路线（24）</a></li>
+<li><a href="#xin-min-zhu-zhu-yi-ge-ming-dao-lu-de-nei-rong-ji-yi-yi-35">新民主主义革命道路的内容及意义（35）</a></li>
+<li><a href="#xin-min-zhu-zhu-yi-ge-ming-de-san-da-fa-bao-he-dang-de-jian-she-de-jing-yan-36">新民主主义革命的三大法宝和党的建设的经验（36）</a></li>
+<li><a href="#dang-zai-guo-du-shi-qi-de-zong-lu-xian-ji-li-lun-yi-ju-48">党在过渡时期的总路线及理论依据（48）</a></li>
+<li><a href="#she-hui-zhu-yi-gai-zao-de-li-shi-jing-yan-56">社会主义改造的历史经验（56）</a></li>
+<li><a href="#chu-bu-tan-suo-li-lun-cheng-guo-65">初步探索理论成果（65）</a></li>
+<li><a href="#chu-bu-tan-suo-de-yi-yi-77">初步探索的意义（77）</a></li>
+<li><a href="#chu-bu-tan-suo-de-yi-li-shi-jing-yan-jiao-xun-78">初步探索的意历史经验教训（78）</a></li>
+<li><a href="#she-hui-zhu-yi-ben-zhi-li-lun-95">社会主义本质理论（95）</a></li>
+<li><a href="#she-hui-zhu-yi-chu-ji-jie-duan-ti-chu-he-han-yi-99">社会主义初级阶段提出和含义（99）</a></li>
+<li><a href="#dang-de-ji-ben-lu-xian-102">党的基本路线（102）</a></li>
+<li><a href="#gai-ge-kai-fang-fang-li-lun-105-xin-zeng">改革开放放理论（105）（新增）</a></li>
+<li><a href="#she-hui-zhu-yi-shi-chang-jing-ji-li-lun-107">社会主义市场经济理论（107）</a></li>
+<li><a href="#she-hui-zhu-yi-shi-chang-jing-ji-li-lun-de-yao-dian-108">社会主义市场经济理论的要点（108）</a></li>
+<li><a href="#san-ge-dai-biao-chong-yao-si-xiang-de-he-xin-guan-dian-126">三个代表重要思想的核心观点（126）</a></li>
+<li><a href="#ke-xue-fa-zhan-guan-de-ke-xue-nei-han-152">科学发展观的科学内涵（152）</a></li>
+<li><a href="#she-hui-zhu-yao-mao-dun-bian-cheng-shi-me-wei-shi-me-bian-hua-178">社会主要矛盾变成什么？为什么变化？（178）</a></li>
+<li><a href="#xin-shi-dai-de-nei-han-he-yi-yi-180">新时代的内涵和意义（180）</a></li>
+<li><a href="#xi-jin-ping-zhong-guo-te-se-she-hui-zhu-yi-si-xiang-de-he-xin-yao-yi-xuan-ze-182">习近平中国特色社会主义思想的核心要义（选择）（182）</a></li>
+<li><a href="#xi-jin-ping-zhong-guo-te-se-she-hui-zhu-yi-si-xiang-de-li-shi-di-wei-di-san-jie">习近平中国特色社会主义思想的历史地位（第三节）</a></li>
+<li><a href="#zhong-guo-meng-de-ke-xue-nei-han-197">中国梦的科学内涵（197）</a></li>
+<li><a href="#zen-me-fen-li-shi-xian-zhong-guo-meng-199">怎么奋力实现中国梦（199）</a></li>
+<li><a href="#shi-xian-she-hui-zhu-yi-xian-dai-hua-qiang-guo-liang-bu-zou-zhan-lue-de-ju-ti-an-pai-203-205">实现社会主义现代化强国“两步走”战略的具体安排（203-205）</a></li>
+<li><a href="#guan-che-xin-fa-zhan-li-nian-207">贯彻新发展理念（207）</a></li>
+<li><a href="#ru-he-jian-chi-zhong-guo-te-se-she-hui-zhu-yi-zheng-zhi-fa-zhan-dao-lu-214-215">如何坚持中国特色社会主义政治发展道路（214-215）</a></li>
+<li><a href="#jian-chi-yi-guo-liang-zhi-tui-jin-zu-guo-tong-yi-da-ti-chan-shu-219">坚持“一国两制”，推进祖国统一（大题阐述）（219）</a></li>
+<li><a href="#jian-ding-wen-hua-zi-xin-jian-she-she-hui-zhu-yi-wen-hua-qiang-guo-229-230">坚定文化自信，建设社会主义文化强国（229-230）</a></li>
+<li><a href="#jian-chi-zong-ti-guo-jia-an-quan-guan-235-236">坚持总体国家安全观（235-236）</a></li>
+<li><a href="#xing-cheng-ren-yu-zi-ran-he-xie-fa-zhan-xin-ge-ju-239-240">形成人与自然和谐发展新格局（239-240）</a></li>
+<li><a href="#quan-mian-jian-cheng-xiao-kang-she-hui-de-nei-han-da-ti-244">全面建成小康社会的内涵（大题）（244）</a></li>
+<li><a href="#jue-sheng-quan-mian-jian-cheng-xiao-kang-she-hui-247">—决胜全面建成小康社会（247）</a></li>
+<li><a href="#quan-mian-shen-hua-gai-ge-de-zong-mu-biao-251">全面深化改革的总目标（251）</a></li>
+<li><a href="#zheng-que-chu-li-quan-mian-shen-hua-gai-ge-zhong-de-chong-da-guan-xi-253">正确处理全面深化改革中的重大关系（253）</a></li>
+<li><a href="#zhong-guo-te-se-she-hui-zhu-yi-fa-zhi-dao-lu-256">中国特色社会主义法治道路（256）</a></li>
+<li><a href="#ru-he-jiang-dang-de-zheng-zhi-jian-she-bai-zai-shou-wei-261">如何将党的政治建设摆在首位（261）</a></li>
+<li><a href="#dang-zai-xin-shi-dai-de-qiang-jun-mu-biao-shi-269">党在新时代的强军目标是（269）</a></li>
+<li><a href="#tui-dong-jian-li-xin-xing-guo-ji-guan-xi-286">推动建立新型国际关系（286）</a></li>
+<li><a href="#gou-jian-ren-lei-ming-yun-gong-tong-ti-si-xiang-nei-han-shi-shi-me-290">构建人类命运共同体思想内涵是什么（290）</a></li>
+<li><a href="#zhong-guo-te-se-she-hui-zhu-yi-zui-ben-zhi-de-te-zheng-lun-shu-ti-298">中国特色社会主义最本质的特征（论述题）（298）</a></li>
+<li><a href="#xin-shi-dai-zhong-guo-gong-chan-dang-de-li-shi-shi-ming-shi-shi-me-301">新时代中国共产党的历史使命是什么？（301）</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h3><span id="mao-ze-dong-si-xiang-zhu-yao-nei-rong">—毛泽东思想主要内容</span><a href="#mao-ze-dong-si-xiang-zhu-yao-nei-rong" class="header-anchor"></a></h3><ul>
+<li>(1)关于新民主主义革命,</li>
+<li>(2)关于社会主义革命和社会主义建设;</li>
+<li>(3)关于革命军队的建设和军事战略;</li>
+<li>(4)关于政策和策略;</li>
+<li>(5)关于思想政治工作和文化工作;</li>
+<li>(6)关于党的建设。</li>
+</ul>
+<h3><span id="mao-ze-dong-si-xiang-huo-de-ling-hun-11">毛泽东思想活的灵魂（11）</span><a href="#mao-ze-dong-si-xiang-huo-de-ling-hun-11" class="header-anchor"></a></h3><ul>
+<li><p>实事求是;</p>
+<ul>
+<li><p>意义：首先，实事求是是贯穿马克思主义中国化两大理论成果形成和发展的全过程。</p>
+<p>​          其次，实事求是是体现于马克思主义中国化两大理论成果基本内容的各个方面。</p>
+<p>​           最后，实事求是是绳渗透于马克思主义中国化两大理论成果的方法论原则。</p>
+</li>
+</ul>
+</li>
+<li><p>群众路线;</p>
+</li>
+<li><p>独立自主</p>
+</li>
+</ul>
+<h3><span id="mao-ze-dong-si-xiang-de-li-shi-di-wei-13">毛泽东思想的历史地位（13）</span><a href="#mao-ze-dong-si-xiang-de-li-shi-di-wei-13" class="header-anchor"></a></h3><ul>
+<li>1、马克思主义中国化的第一个重大理论成果 毛泽东思想是马克思主义基本原理同中国具体实际相结合第一次历史性飞跃的理论成果,是中国共产党的指导思想。</li>
+<li>2、中国革命和建设的科学指南 毛泽东思想是夺取中国革命胜利的理论武器,是社会主义中国立国建国的思想政治基础,是中国特色社会主义理论的思想渊源和理论先导,是中华民族团结振兴的精神支柱。 </li>
+<li>3、中国共产党和中国人民宝贵的精神财富 毛泽东思想是马克思主义发展史上承上启下、继往开来的重要阶段,已经并将继续对中国共产党和中华民族发挥巨大而长远的指导作用。</li>
+</ul>
+<h3><span id="xin-min-zhu-zhu-yi-de-zong-lu-xian-24">新民主主义的总路线（24）</span><a href="#xin-min-zhu-zhu-yi-de-zong-lu-xian-24" class="header-anchor"></a></h3><p>无产阶级领导的，人民大众的，反对帝国主义、封建主义和官僚资本主义的革命</p>
+<h3><span id="xin-min-zhu-zhu-yi-ge-ming-dao-lu-de-nei-rong-ji-yi-yi-35">新民主主义革命道路的内容及意义（35）</span><a href="#xin-min-zhu-zhu-yi-ge-ming-dao-lu-de-nei-rong-ji-yi-yi-35" class="header-anchor"></a></h3><p>内容： 土地革命是民主革命的基本内容。武装斗争是中国革命的主要形式,是农村根据地建设和土地革命的强有力保证;农村革命根据地是中国革命的战略阵地,是进行武装斗争和开展土地革命的依托。</p>
+<p>中国革命道路理论的意义 中国革命道路的理论,反映了中国半殖民地半封建社会民主革命发展的客观规律。党在探索中国革命道路的过程中,不是照抄照搬俄国十月革命的经验,而是从中国的实际出发,开辟了引导中国革命走向胜利的正确道路,独创性地发展了马克思列宁主义。中国革命道路理论,是党运用马克思主义的立场、观点和方法,分析、研究和解决中国革命具体问题的光辉典范,对于推进马克思主义中国化具有重要的方法论意义。</p>
+<h3><span id="xin-min-zhu-zhu-yi-ge-ming-de-san-da-fa-bao-he-dang-de-jian-she-de-jing-yan-36">新民主主义革命的三大法宝和党的建设的经验（36）</span><a href="#xin-min-zhu-zhu-yi-ge-ming-de-san-da-fa-bao-he-dang-de-jian-she-de-jing-yan-36" class="header-anchor"></a></h3><p>三大法宝：</p>
+<p>1、统一战线。统一战线问题是无产阶级政党策略思想的重要内容。</p>
+<p>2、武装斗争。武装斗争是中国革命的特点和优点之一。</p>
+<p>3、党的建设。中国共产党要领导革命取得胜利，必须不断加强党的思想建设、组织建设和作风建设。</p>
+<p>党的建设经验：</p>
+<p>1、必须把思想建设始终放在党的首位。</p>
+<p>2、必须在任何时候都重视党的组织建设。</p>
+<p>3、必须重视党的作风建设。</p>
+<p>4、必须联系党的政治路线加强党的建设。</p>
+<h3><span id="dang-zai-guo-du-shi-qi-de-zong-lu-xian-ji-li-lun-yi-ju-48">党在过渡时期的总路线及理论依据（48）</span><a href="#dang-zai-guo-du-shi-qi-de-zong-lu-xian-ji-li-lun-yi-ju-48" class="header-anchor"></a></h3><p>党在过渡时期的总路线的主要内容被概括为“一化三改”。</p>
+<p>“一化”即社会主义工业化，</p>
+<p>“三改”即对个体农业、手工业和对资本主义工商业的社会主义心改造。</p>
+<p>它们之间相互联系，不可分离，可以比喻为鸟的“主体”和“两翼”。</p>
+<p>“一化”是“主体”，“三改”是“两翼”，两者相互促进，相辅相成。</p>
+<p>这是一条社会主义建设和社会主义改造同时并举的路线，体现了社会主义工业化和社会主义改造的紧密结合，体现了解放生产力、变革生产关系与发展生产力的有机统一。</p>
+<p>理论依据：</p>
+<ul>
+<li>毛泽东为主要代表的中国共产党人的过渡思想</li>
+<li>马克思、恩格斯过渡理论;</li>
+<li>列宁的革命转变思想</li>
+</ul>
+<h3><span id="she-hui-zhu-yi-gai-zao-de-li-shi-jing-yan-56">社会主义改造的历史经验（56）</span><a href="#she-hui-zhu-yi-gai-zao-de-li-shi-jing-yan-56" class="header-anchor"></a></h3><ul>
+<li>坚持社会主义工业化建设与社会主义改造同时并举;</li>
+<li>采取积极引导，逐步过渡的方式。;</li>
+<li>用和平的方法进行改造</li>
+</ul>
+<h3><span id="chu-bu-tan-suo-li-lun-cheng-guo-65">初步探索理论成果（65）</span><a href="#chu-bu-tan-suo-li-lun-cheng-guo-65" class="header-anchor"></a></h3><ul>
+<li>调动一切积极因素为社会主义事业服务;</li>
+<li>正确认识和处理社会主义社会矛盾的思想;</li>
+<li>走中国工业化道路的思想</li>
+</ul>
+<h3><span id="chu-bu-tan-suo-de-yi-yi-77">初步探索的意义（77）</span><a href="#chu-bu-tan-suo-de-yi-yi-77" class="header-anchor"></a></h3><p>1、巩固和发展了我国的社会主义制度。</p>
+<p>2、为开创中国特色社会主义提供了宝贵经验、理论准备、物质基础。</p>
+<p>3、丰富了科学社会主义的理论和实践。</p>
+<h3><span id="chu-bu-tan-suo-de-yi-li-shi-jing-yan-jiao-xun-78">初步探索的意历史经验教训（78）</span><a href="#chu-bu-tan-suo-de-yi-li-shi-jing-yan-jiao-xun-78" class="header-anchor"></a></h3><ul>
+<li>第一，必须把马克思主义与中国实际相结合，探索符合中国特点的社会主义建设道路</li>
+<li>第二，必须正确认识社会主义社会的主要矛盾和根本任务，集中力量发展生产力。</li>
+<li>第三，必须从实际出发进行社会主义建设，建设规模和速度要和国力相适应，不能急于求成。</li>
+<li>第四，必须发展社会主义民主，健全社会主义法制。</li>
+<li>第五，必须坚持党的民主集中制和集体领导制度，加强执政党建设。</li>
+<li>第六，必须坚持对外开放，借鉴和吸收人类文明成果建设社会主义，不能关起门来搞建设。</li>
+</ul>
+<h3><span id="she-hui-zhu-yi-ben-zhi-li-lun-95">社会主义本质理论（95）</span><a href="#she-hui-zhu-yi-ben-zhi-li-lun-95" class="header-anchor"></a></h3><ul>
+<li>解放生产力、发展生产力。</li>
+<li>消灭剥削、消除两极分化、最终达到共同富裕</li>
+</ul>
+<h3><span id="she-hui-zhu-yi-chu-ji-jie-duan-ti-chu-he-han-yi-99">社会主义初级阶段提出和含义（99）</span><a href="#she-hui-zhu-yi-chu-ji-jie-duan-ti-chu-he-han-yi-99" class="header-anchor"></a></h3><ul>
+<li><p>提出：党的十三大（1987）系统地论述了社会主义初级阶段理论，明确指出社会主义初级阶段，就是</p>
+<p>我国在生产力落后、商品经济不发达条件下，建设社会主义必然要经历的特定阶段，即从我国进入社会主义到基本实现会主义现代化地整个历史阶段。</p>
+</li>
+<li><p>含义：</p>
+<p>1、我国社会已经是社会主义社会。我们必须坚持不能离开社会主义。（阐明初级阶段的社会性质）</p>
+<p>2、我国的社会主义社会还处在初级阶段。我们必须从这个实际出发，而不能超越这个阶段。（阐明我国现实中社会主义社会的发展程度）</p>
+</li>
+</ul>
+<h3><span id="dang-de-ji-ben-lu-xian-102">党的基本路线（102）</span><a href="#dang-de-ji-ben-lu-xian-102" class="header-anchor"></a></h3><p>党的十三大报告提出了党在社会主义初级阶段的基本路线：</p>
+<ul>
+<li>领导和团结全国各族人民，以经济建设为中心，坚持四项基本原则，坚持改革开放、自力更生、艰苦创业，为把我国建设成为富强、民主、文明的社会主义现代化国家而奋斗</li>
+</ul>
+<p>“富强”主要是经济领域的目标和要求，“民主”主要是政治领域的目标和要求，“文明”主要是思想文化领的目标和要求</p>
+<p>这三个方面的目标和要求，在现实中表现为经济建设、政治建设、文化建设的统一。</p>
+<p>“以经济建设为中心”回答了社会主义的<label style="color:blue">根本任务问题</label></p>
+<p>党的基本路线在改革开放实践中不断充实和完善。党的十七大把<label style="color:blue">“和谐”</label>与“富强、民主、文明”一起写入了基本路线。党的十九大提出“为把我国建设成为富强民主文明和谐美丽的社会主义现代化强国而奋斗”，不仅将<label style="color:blue">“美丽”</label>纳入了基本路线，而且将<label style="color:blue">现代化国家</label>提升为“现代化强国”，扩展了党的基本路线的内涵，提升了社会主义初级阶段的奋斗目标</p>
+<h3><span id="gai-ge-kai-fang-fang-li-lun-105-xin-zeng">改革开放放理论（105）（新增）</span><a href="#gai-ge-kai-fang-fang-li-lun-105-xin-zeng" class="header-anchor"></a></h3><p>新时期最鲜明的特点是改革开放</p>
+<ul>
+<li>改革是社会主义社会发展的直接动力,是一项崭新的事业,是一个大试验;</li>
+<li>开放也是改革,对外开放是建设中国特色社会主义的一项基本国策;</li>
+<li>对外开放是对所有国家的开放,它不仅是经济领域的开放,还包括科技、教育、文化领域的开放;</li>
+<li>实行对外开放要对对待资本主义社会创造的现代文明成果,同时要坚持独立自主的原则</li>
+</ul>
+<p>实质和目标：</p>
+<ul>
+<li>从根本上改变束缚我国生产力发展的经济体制;</li>
+<li>建立充满生机和活力的社会主义新经济体制;</li>
+<li>相应地改革政治体制和其他方面的体制;</li>
+<li>实现中国的社会主义现代化</li>
+</ul>
+<h3><span id="she-hui-zhu-yi-shi-chang-jing-ji-li-lun-107">社会主义市场经济理论（107）</span><a href="#she-hui-zhu-yi-shi-chang-jing-ji-li-lun-107" class="header-anchor"></a></h3><ul>
+<li>计划经济不等于社会主义，市场经济也不等于资本主义;</li>
+<li>计划经济和市场经济不是划分社会制度的标志;</li>
+<li>计划和市场都是经济手段;</li>
+<li>计划和市场对经济活动的调节各有优势和长处;</li>
+<li>计划经济和市场经济都是资源配置的方式，本身不具有制度属性</li>
+</ul>
+<h3><span id="she-hui-zhu-yi-shi-chang-jing-ji-li-lun-de-yao-dian-108">社会主义市场经济理论的要点（108）</span><a href="#she-hui-zhu-yi-shi-chang-jing-ji-li-lun-de-yao-dian-108" class="header-anchor"></a></h3><ul>
+<li>计划和市场不是划分社会制度的标志;</li>
+<li>计划和市场都是经济手段;</li>
+<li>市场经济本身不具有制度属性</li>
+</ul>
+<h3><span id="san-ge-dai-biao-chong-yao-si-xiang-de-he-xin-guan-dian-126">三个代表重要思想的核心观点（126）</span><a href="#san-ge-dai-biao-chong-yao-si-xiang-de-he-xin-guan-dian-126" class="header-anchor"></a></h3><ul>
+<li>始终代表中国先进生产力的发展要求;</li>
+<li>始终代表中国先进文化的前进方向;</li>
+<li>始终代表中国最广大人民的根本利益</li>
+</ul>
+<h3><span id="ke-xue-fa-zhan-guan-de-ke-xue-nei-han-152">科学发展观的科学内涵（152）</span><a href="#ke-xue-fa-zhan-guan-de-ke-xue-nei-han-152" class="header-anchor"></a></h3><ul>
+<li>推动经济社会发展是科学发展观的第一要义;</li>
+<li>以人为本是科学发展观的核心立场;</li>
+<li>全面协调可持续是科学发展观的基本要求;</li>
+<li>统筹兼顾是科学发展观的根本方法c</li>
+</ul>
+<p>这是对科学发展观的概括。</p>
+<h3><span id="she-hui-zhu-yao-mao-dun-bian-cheng-shi-me-wei-shi-me-bian-hua-178">社会主要矛盾变成什么？为什么变化？（178）</span><a href="#she-hui-zhu-yao-mao-dun-bian-cheng-shi-me-wei-shi-me-bian-hua-178" class="header-anchor"></a></h3><p>变成什么：党的十九大明确指出，人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾</p>
+<p>为什么变（变化依据）：</p>
+<ul>
+<li>我国社会生产力水平总体上显著提高，很多方面进入世界前列。;</li>
+<li>人民生活水平显著提高，对美好生活的向往更加强烈，不仅对物质文化生活提出了更高要求，而且在民主、法治、公平、正义、</li>
+<li>安全、环境等方面的要求日益增长。;</li>
+<li>影响满足人们美好生活需要的因素很多，但主要是发展的不平衡不充分问题。</li>
+</ul>
+<h3><span id="xin-shi-dai-de-nei-han-he-yi-yi-180">新时代的内涵和意义（180）</span><a href="#xin-shi-dai-de-nei-han-he-yi-yi-180" class="header-anchor"></a></h3><ul>
+<li>内涵：第一,这个新时代是承前启后、继往开来,在新的历史条件下继续夺取中国特色社会主义伟大胜利的时代。</li>
+<li>第二,这个新时代是决胜全面建成小康社会、进而全面建设社会主义现代化强国的时代。</li>
+<li>第三,这个新时代是全国各族人民团结奋斗、不断创造美好生活、逐步实现全体人民共同富裕的时代。</li>
+<li>第四,这个新时代是全体中华儿女勠力同心、奋力实现中华民族伟大复兴中国梦的时代。</li>
+<li>第五,这个新时代是我国日益走近世界舞台中央、不断为人类作出更大贡献的时代。</li>
+</ul>
+<ul>
+<li>意义: 第一,从中华民族复兴的历史进程看,中国特色社会主义进入新时代,意味着近代以来久经磨难的中华民族迎来了从站起来、富起来到强起来的伟大飞跃,迎来了实现中华民族伟大复兴的光明前景。 </li>
+<li>第二,从科学社会主义发展进程看,中国特色社会主义进入新时代,意味着科学社会主义在21世纪的中国焕发出强大生机活力,在世界上高高举起了中国特色社会主义伟大旗帜。 </li>
+<li>第三,从人类文明进程看,中国特色社会主义进入新时代,意味着中国特色社会主义道路、理论、制度、文化不断发展,拓展了发展中国家走向现代化的途径,给世界上那些既希望加快发展又希望保持自身独立性的国家和民族提供了全新选择,为解决人类问题贡献了中国智慧和中国方案。</li>
+</ul>
+<h3><span id="xi-jin-ping-zhong-guo-te-se-she-hui-zhu-yi-si-xiang-de-he-xin-yao-yi-xuan-ze-182">习近平中国特色社会主义思想的核心要义（选择）（182）</span><a href="#xi-jin-ping-zhong-guo-te-se-she-hui-zhu-yi-si-xiang-de-he-xin-yao-yi-xuan-ze-182" class="header-anchor"></a></h3><ul>
+<li>坚持和发展中国特色社会主义,是改革开放以来我们党全部理论和实践的鲜明主题,也是习近平新时代中国特色社会主义思想的<label style="color:blue">核心要义</label>。 </li>
+<li>习近平新时代中国特色社会主义思想内涵十分丰富, 最重要、最核心的内容就是党的十九大报告概括的“八个明确”。<ul>
+<li>第一,明确坚持和发展中国特色社会主义,总任务是实现社会主义现代化和中华民族伟大复兴,在全面建成小康社会的基础上,分两步走在本世纪中叶建成富强民主文明和谐美丽的社会主义现代化强国。</li>
+<li>第二,明确新时代我国社会主要矛盾是人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾,必须坚持以人民为中心的发展思想,不断促进人的全面发展、全体人民共同富裕。</li>
+<li>第三,明确中国特色社会主义事业总体布局是“五位一体”、战略布局是“四个全面”,强调坚定道路自信、理论自信、制度自信、文化自信。</li>
+<li>第四,明确全面深化改革总目标是完善和发展中国特色社会主义制度、推进国家治理体系和治理能力现代化。</li>
+<li>第五,明确全面推进依法治国总目标是建设中国特色社会主义法治体系、建设社会主义法治国家。</li>
+<li>第六,明确党在新时代的强军目标是建设一支听党指挥、能打胜仗、作风优良的人民军队,把人民军队建设成为世界一流军队。</li>
+<li>第七,明确中国特色大国外交要推动构建新型国际关系,推动构建人类命运共同体。</li>
+<li>第八,明确中国特色社会主义最本质的特征是中国共产党领导,中国特色社会主义制度的最大优势是中国共产党领导,党是最高政治领导力量,提出新时代党的建设总要求,突出政治建设在党的建设中的重要地位。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="xi-jin-ping-zhong-guo-te-se-she-hui-zhu-yi-si-xiang-de-li-shi-di-wei-di-san-jie">习近平中国特色社会主义思想的历史地位（第三节）</span><a href="#xi-jin-ping-zhong-guo-te-se-she-hui-zhu-yi-si-xiang-de-li-shi-di-wei-di-san-jie" class="header-anchor"></a></h3><ul>
+<li>是马克思主义中国化的最新成果;<br>开辟了马克思主义新境界;</li>
+<li>是新时代的精神旗帜;</li>
+<li>是实现中华民族伟大复兴的行动指南;</li>
+<li>是中国特色社会主义社会主义理论体系的重要组成部分</li>
+</ul>
+<h3><span id="zhong-guo-meng-de-ke-xue-nei-han-197">中国梦的科学内涵（197）</span><a href="#zhong-guo-meng-de-ke-xue-nei-han-197" class="header-anchor"></a></h3><ul>
+<li>国家富强;</li>
+<li>民族振兴;</li>
+<li>人民幸福</li>
+</ul>
+<h3><span id="zen-me-fen-li-shi-xian-zhong-guo-meng-199">怎么奋力实现中国梦（199）</span><a href="#zen-me-fen-li-shi-xian-zhong-guo-meng-199" class="header-anchor"></a></h3><ul>
+<li>实现中国梦必须走中国道路,即中国特色社会主义道路;;</li>
+<li>实现中国梦必须弘扬中国精神,即以爱国主义为核心的民族精神和以改革创新为核心的时代精神;;</li>
+<li>实现中国梦必须凝聚中国力量,即全国各族人民大团结的力量。;</li>
+<li>实现中国梦需要实干才能梦想成真;;</li>
+<li>实现中国梦需要锲而不舍驰而不息的艰苦努力;;</li>
+<li>实现中国梦需要和平,只有和平才能实现梦想。</li>
+</ul>
+<h3><span id="shi-xian-she-hui-zhu-yi-xian-dai-hua-qiang-guo-liang-bu-zou-zhan-lue-de-ju-ti-an-pai-203-205">实现社会主义现代化强国“两步走”战略的具体安排（203-205）</span><a href="#shi-xian-she-hui-zhu-yi-xian-dai-hua-qiang-guo-liang-bu-zou-zhan-lue-de-ju-ti-an-pai-203-205" class="header-anchor"></a></h3><ul>
+<li>从2020年到2035年，基本实现社会主义现代化的目标。;</li>
+<li>从2035年到本世纪中叶建设社会主义现代化强国的目标。</li>
+</ul>
+<h3><span id="guan-che-xin-fa-zhan-li-nian-207">贯彻新发展理念（207）</span><a href="#guan-che-xin-fa-zhan-li-nian-207" class="header-anchor"></a></h3><p>新发展理念立足于我国的新发展环境、新发展条件，是符合我国国情、顺应时代潮流、厚植发展优势的重大抉择，具有战略性、纲领性、引领性。</p>
+<ul>
+<li>创新是引领发展的第一动力</li>
+<li>协调是可持续健康发展的内在要求</li>
+<li>绿色是永续发展的必要条件</li>
+<li>开放是国家繁荣发展的必由之路</li>
+<li>共享是中国特色社会主义的本质要求</li>
+</ul>
+<h3><span id="ru-he-jian-chi-zhong-guo-te-se-she-hui-zhu-yi-zheng-zhi-fa-zhan-dao-lu-214-215">如何坚持中国特色社会主义政治发展道路（214-215）</span><a href="#ru-he-jian-chi-zhong-guo-te-se-she-hui-zhu-yi-zheng-zhi-fa-zhan-dao-lu-214-215" class="header-anchor"></a></h3><ul>
+<li>近代中国以来中国人民长期奋斗历史逻辑、理论逻辑、实践逻辑的必然结果;</li>
+<li>是坚持党的本质属性、践行党的根本宗旨的必然要求;</li>
+<li>是中国特色社会主义进入新时代的必然要求</li>
+</ul>
+<ul>
+<li>走中国特色社会主义政治发展道路，必须坚持党的领导、人民当家作主、依法治国有机统一</li>
+<li>必须坚持正确的政治方向</li>
+<li>构建科学完备，科学规范，运行高校的党和国家机构职能体系</li>
+</ul>
+<h3><span id="jian-chi-yi-guo-liang-zhi-tui-jin-zu-guo-tong-yi-da-ti-chan-shu-219">坚持“一国两制”，推进祖国统一（大题阐述）（219）</span><a href="#jian-chi-yi-guo-liang-zhi-tui-jin-zu-guo-tong-yi-da-ti-chan-shu-219" class="header-anchor"></a></h3><ul>
+<li>坚持一个中国原则;</li>
+<li>坚持“九二共识”,推动两岸关系和平发展;</li>
+<li>深化两岸经济合作和文化往来;</li>
+<li>推动两岸同胞共同反对一切分裂国家的活动</li>
+</ul>
+<h3><span id="jian-ding-wen-hua-zi-xin-jian-she-she-hui-zhu-yi-wen-hua-qiang-guo-229-230">坚定文化自信，建设社会主义文化强国（229-230）</span><a href="#jian-ding-wen-hua-zi-xin-jian-she-she-hui-zhu-yi-wen-hua-qiang-guo-229-230" class="header-anchor"></a></h3><ul>
+<li>建设社会主义文化强国，必须培养高度的文化自信;</li>
+<li>建设社会主义文化强国，必须大力发展文化事业和文化产业;</li>
+<li>建设社会主义文化强国 ， 必须提高国家文化软实力</li>
+</ul>
+<h3><span id="jian-chi-zong-ti-guo-jia-an-quan-guan-235-236">坚持总体国家安全观（235-236）</span><a href="#jian-chi-zong-ti-guo-jia-an-quan-guan-235-236" class="header-anchor"></a></h3><ul>
+<li>完善国家安全体系;</li>
+<li>健全公共安全体系;</li>
+<li>推进平安中国建设;</li>
+<li>加强国家安全能力建设;</li>
+<li>加强国家安全教育</li>
+</ul>
+<h3><span id="xing-cheng-ren-yu-zi-ran-he-xie-fa-zhan-xin-ge-ju-239-240">形成人与自然和谐发展新格局（239-240）</span><a href="#xing-cheng-ren-yu-zi-ran-he-xie-fa-zhan-xin-ge-ju-239-240" class="header-anchor"></a></h3><ul>
+<li>把节约资源放在首位;</li>
+<li>坚持保护优先、自然恢复为主;</li>
+<li>着力推进绿色发展、循环发展、低碳发展;</li>
+<li>形成节约资源和保护环境的空间格局、产业结构、生产方式、生活方式</li>
+</ul>
+<h3><span id="quan-mian-jian-cheng-xiao-kang-she-hui-de-nei-han-da-ti-244">全面建成小康社会的内涵（大题）（244）</span><a href="#quan-mian-jian-cheng-xiao-kang-she-hui-de-nei-han-da-ti-244" class="header-anchor"></a></h3><p>党的十八大提出了到2020年全面建成小康社会的奋斗目标。全面建成小康社会标志着我们实现现代化建设第三步战略目标必经的承上启下的重要发展阶段。全面小康有更高的标准、更丰富的内涵、更全面的内容，即经济更加发展、民主更加健全;科教更加进步、文化更加繁荣;社会更加和谐;人民生活更加殷实      更加殷实（简答）</p>
+<ul>
+<li>全面建成小康社会,更重要、更难做到的是“全面”; </li>
+<li>全面小康,覆盖的领域要全面,是“五位一体”全面进步的小康。;</li>
+<li>全面建成小康社会,要实事求是、因地制宜。（论述）</li>
+</ul>
+<h3><span id="jue-sheng-quan-mian-jian-cheng-xiao-kang-she-hui-247">—决胜全面建成小康社会（247）</span><a href="#jue-sheng-quan-mian-jian-cheng-xiao-kang-she-hui-247" class="header-anchor"></a></h3><ul>
+<li>第一，坚决打好防范化解重大风险攻坚战。</li>
+<li>第二，坚决打好精准脱贫攻坚战。</li>
+<li>第三，坚决打好污染防治攻坚战。</li>
+<li>第四，确保经济社会持续健康发展。</li>
+</ul>
+<h3><span id="quan-mian-shen-hua-gai-ge-de-zong-mu-biao-251">全面深化改革的总目标（251）</span><a href="#quan-mian-shen-hua-gai-ge-de-zong-mu-biao-251" class="header-anchor"></a></h3><ul>
+<li>总目标：是完善中国特色社会主义军事制度，推进国家治理体系和治理能力现代化。</li>
+<li>主要内容是完善政治体制，破除体制内弊端，是全面深化改革的基本点。革新经济体制，完善经济体系，是全面深化改革的关键项。</li>
+</ul>
+<h3><span id="zheng-que-chu-li-quan-mian-shen-hua-gai-ge-zhong-de-chong-da-guan-xi-253">正确处理全面深化改革中的重大关系（253）</span><a href="#zheng-que-chu-li-quan-mian-shen-hua-gai-ge-zhong-de-chong-da-guan-xi-253" class="header-anchor"></a></h3><ul>
+<li>处理好解放思想和实事求是的关系 </li>
+<li>处理好顶层设计和摸着石头过河的关系 </li>
+<li>处理好整体推进和重点突破的关系</li>
+<li>处理好胆子要大、步子要稳的关系</li>
+<li>处理好改革、发展、稳定的关系</li>
+</ul>
+<h3><span id="zhong-guo-te-se-she-hui-zhu-yi-fa-zhi-dao-lu-256">中国特色社会主义法治道路（256）</span><a href="#zhong-guo-te-se-she-hui-zhu-yi-fa-zhi-dao-lu-256" class="header-anchor"></a></h3><ul>
+<li>坚持中国共产党的领导</li>
+<li>坚持人民在全面依法治国中的主体地位</li>
+<li>坚持法律面前人人平等</li>
+<li>坚持依法治国和以德治国相结合</li>
+<li>坚持从中国的实际出发</li>
+</ul>
+<h3><span id="ru-he-jiang-dang-de-zheng-zhi-jian-she-bai-zai-shou-wei-261">如何将党的政治建设摆在首位（261）</span><a href="#ru-he-jiang-dang-de-zheng-zhi-jian-she-bai-zai-shou-wei-261" class="header-anchor"></a></h3><p>为什么：</p>
+<ul>
+<li>旗帜鲜明地讲政治是我们党作为马克思主义政党地根本要求</li>
+<li>党的政治建设是党地根本性建设，决定党的建设方向和效果</li>
+<li>注重抓党的政治建设是党的十八大以来全面从严治党的成功经验</li>
+</ul>
+<p>如何放在首位：</p>
+<ul>
+<li>保证全党服从中央，坚持党中央权威和集中统一领导，是党的政治建设的首要任务。</li>
+<li>要尊崇党章，严格执行新形势下党内政治生活若干准则，完善和落实民主集中制的各项制度。</li>
+<li>发展积极健康的党内政治文化，弘扬忠诚老实、公道正派、实事求是、清正廉洁等价值观。</li>
+<li>全党同志要加强党性锻炼，不断提高政治觉悟和政治能力，把对党忠诚、为党分忧、为党尽职、为民造福作为根本政治担当，永葆共产党人政治本色。</li>
+</ul>
+<h3><span id="dang-zai-xin-shi-dai-de-qiang-jun-mu-biao-shi-269">党在新时代的强军目标是（269）</span><a href="#dang-zai-xin-shi-dai-de-qiang-jun-mu-biao-shi-269" class="header-anchor"></a></h3><ul>
+<li>建设一支听党指挥、能打胜仗、作风优良的人民军队</li>
+<li>必须同国家现代化进程相一致，力争到2035年基本实现国防军队现代化</li>
+<li>到本世纪中叶把人民军队全面建成世界一流军队</li>
+</ul>
+<h3><span id="tui-dong-jian-li-xin-xing-guo-ji-guan-xi-286">推动建立新型国际关系（286）</span><a href="#tui-dong-jian-li-xin-xing-guo-ji-guan-xi-286" class="header-anchor"></a></h3><ul>
+<li>要坚决维护国家核心利益;</li>
+<li>要在和平共处五项原则基础上发展同世界各国的友好合作;</li>
+<li>要积极参与全球治理体系改革和建设;</li>
+<li>要加强涉外法律工作,完善涉外法律法规体系</li>
+<li>还要把互相尊重、公平正义、合作共赢理念体现到政治、经济、安全、文化等对外合作的方方面面，推动构建人类命运共同体</li>
+</ul>
+<h3><span id="gou-jian-ren-lei-ming-yun-gong-tong-ti-si-xiang-nei-han-shi-shi-me-290">构建人类命运共同体思想内涵是什么（290）</span><a href="#gou-jian-ren-lei-ming-yun-gong-tong-ti-si-xiang-nei-han-shi-shi-me-290" class="header-anchor"></a></h3><p>构建人类命运共同体思想,是一个科学完整、内涵丰富、意义深远的思想体系,其核心就是 “建设持久和平、普遍安全、共同繁荣、开放包容、清洁美丽的世界”。 </p>
+<ul>
+<li>第一,政治上,要相互尊重、平等协商,坚决摒弃冷战思维和强权政治,走对话而不对抗、结伴而不结盟的国与国交往新路。</li>
+<li>第二,安全上,要坚持以对话解决争端、以协商化解分歧,统筹应对传统和非传统安全威胁,反对一切形式的恐怖主义。</li>
+<li>第三,经济上,要同舟共济,促进贸易和投资自由化便利化,推动经济全球化朝着更加开放、包容、普惠、平衡、共赢的方向发展。 </li>
+<li>第四,文化上,要尊重世界文明多样性,以文明交流超越文明隔阂、文明互鉴。 第五,生态上,要坚持环境友好,合作应对气候变化,保护好人类赖以生存的地球家园。</li>
+</ul>
+<h3><span id="zhong-guo-te-se-she-hui-zhu-yi-zui-ben-zhi-de-te-zheng-lun-shu-ti-298">中国特色社会主义最本质的特征（论述题）（298）</span><a href="#zhong-guo-te-se-she-hui-zhu-yi-zui-ben-zhi-de-te-zheng-lun-shu-ti-298" class="header-anchor"></a></h3><ul>
+<li>中国共产党的领导是中国特色社会主义最本质的特征<ul>
+<li>中国共产党的领导是中国特色社会主义最本质的特征，这是党的十八以来习近平提出的一个重要论断。这一论断符合科学社会主义的基本原则，反应中国特色社会主义的历史经验，适应新时代历史使命的实践要求<ul>
+<li>这是由科学社会主义的理论逻辑所决定的;</li>
+<li>这是由中国特色社会主义产生与发展的历史逻辑所决定的;</li>
+<li>这是由中国特色社会主义迈向新征程的实践逻辑所决定的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>中国共产党的领导是中国特色社会主义的制度的最大优势<ul>
+<li>中国特色社会主义制度是党领导人民创建的;</li>
+<li>党的领导是充分发挥中国特色社会主义制度优势的根本保障;</li>
+<li>党的自身优势是中国特色社会主义制度优势的主要来源</li>
+</ul>
+</li>
+</ul>
+<h3><span id="xin-shi-dai-zhong-guo-gong-chan-dang-de-li-shi-shi-ming-shi-shi-me-301">新时代中国共产党的历史使命是什么？（301）</span><a href="#xin-shi-dai-zhong-guo-gong-chan-dang-de-li-shi-shi-ming-shi-shi-me-301" class="header-anchor"></a></h3><ul>
+<li>统揽伟大斗争、伟大工程、伟大事业、伟大梦想</li>
+<li>在全面给建成小康的基础上全面建成社会主义现代强国，实现中华民族伟大复兴的中国梦</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://decodezoom.cn/2021/07/21/thoughts_mao/" data-id="cl3k7275w0003xgvo7wg31r4z" data-title="毛概重点" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/05/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">计算机图形学</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/02/%E6%B1%87%E7%BC%96/">汇编</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/28/java/">Java复习</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/25/suanfa/">算法设计与分析</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/10/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%AE%A2%E8%A7%82%E9%A2%98/">软件工程客观题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+
+  <div style="font-size: 13px">
+    <link rel="stylesheet" href="https://widget.heweather.net/standard/static/css/he-standard.css?v=1.4.0"><script src="https://widget.heweather.net/standard/static/js/he-standard.js?v=1.4.0"></script><script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    本站总访问量  <a id="busuanzi_value_site_pv"></a> 次<br>
+    本站访客数<a id="busuanzi_value_site_uv"></a>人次
+</div>
+
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

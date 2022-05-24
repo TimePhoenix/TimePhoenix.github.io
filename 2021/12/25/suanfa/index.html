@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?90c91c134971ea31baf103ce4175c5a3";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+  
+
+  
+      
+  
+  <title>算法设计与分析 | TimePhoenix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="简答题 填表题 证明题 算法题     简答题1.什么是递归算法？什么是递归函数？（1）递归算法 : 直接或间接地调用自身的算法； （2）递归函数 : 用函数自身给出定义的函数。 2.递归函数的二要素是什么？（1）边界条件（ 2）递归方程 3.什么叫问题的最优子结构性质？一个问题的最优解包含着其子问题的最优解。这种性质称为最优子结构性质。 4.动态规划基本步骤是什么？（1）找出最优解的性质">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法设计与分析">
+<meta property="og:url" content="http://decodezoom.cn/2021/12/25/suanfa/index.html">
+<meta property="og:site_name" content="TimePhoenix">
+<meta property="og:description" content="简答题 填表题 证明题 算法题     简答题1.什么是递归算法？什么是递归函数？（1）递归算法 : 直接或间接地调用自身的算法； （2）递归函数 : 用函数自身给出定义的函数。 2.递归函数的二要素是什么？（1）边界条件（ 2）递归方程 3.什么叫问题的最优子结构性质？一个问题的最优解包含着其子问题的最优解。这种性质称为最优子结构性质。 4.动态规划基本步骤是什么？（1）找出最优解的性质">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225130029954.png">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225130642845.png">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225125921091.png">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225125954559.png">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225130909908.png">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225130921142.png">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/Screenshot_20211226_082504.jpg">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225130728506.png">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225130755402.png">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/Screenshot_20211225_165848_com.huawei.browser_edit_423323632917696.jpg">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225122508636.png">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225131841115.png">
+<meta property="article:published_time" content="2021-12-25T05:21:28.162Z">
+<meta property="article:modified_time" content="2021-12-29T11:34:53.230Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225130029954.png">
+  
+    <link rel="alternate" href="/atom.xml" title="TimePhoenix" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico"> 
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TimePhoenix</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://decodezoom.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-suanfa" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/12/25/suanfa/" class="article-date">
+  <time class="dt-published" datetime="2021-12-25T05:21:28.162Z" itemprop="datePublished">2021-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      算法设计与分析
+    </h1>
+  
+
+
+
+  <link rel="icon" href="images/favicon.ico">    
+
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#jian-da-ti">简答题</a></li>
+<li><a href="#tian-biao-ti">填表题</a></li>
+<li><a href="#zheng-ming-ti">证明题</a></li>
+<li><a href="#suan-fa-ti">算法题</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h2><span id="jian-da-ti">简答题</span><a href="#jian-da-ti" class="header-anchor"></a></h2><h4><span id="1-shi-me-shi-di-gui-suan-fa-shi-me-shi-di-gui-han-shu">1.什么是递归算法？什么是递归函数？</span><a href="#1-shi-me-shi-di-gui-suan-fa-shi-me-shi-di-gui-han-shu" class="header-anchor"></a></h4><p>（1）递归算法 : 直接或间接地调用自身的算法；</p>
+<p>（2）递归函数 : 用函数自身给出定义的函数。</p>
+<h4><span id="2-di-gui-han-shu-de-er-yao-su-shi-shi-me">2.递归函数的二要素是什么？</span><a href="#2-di-gui-han-shu-de-er-yao-su-shi-shi-me" class="header-anchor"></a></h4><p>（1）边界条件（ 2）递归方程</p>
+<h4><span id="3-shi-me-jiao-wen-ti-de-zui-you-zi-jie-gou-xing-zhi">3.什么叫问题的最优子结构性质？</span><a href="#3-shi-me-jiao-wen-ti-de-zui-you-zi-jie-gou-xing-zhi" class="header-anchor"></a></h4><p>一个问题的最优解包含着其子问题的最优解。这种性质称为最优子结构性质。</p>
+<h4><span id="4-dong-tai-gui-hua-ji-ben-bu-zou-shi-shi-me">4.动态规划基本步骤是什么？</span><a href="#4-dong-tai-gui-hua-ji-ben-bu-zou-shi-shi-me" class="header-anchor"></a></h4><p>（1）找出最优解的性质，并刻划其结构特征。 </p>
+<p>（2）递归地定义最优值。</p>
+<p>（3）以自底向上的方式计算出最优值。 </p>
+<p>(4) 根据计算最优值时得到的信息， 构造最优解。</p>
+<h4><span id="5-hui-su-fa-jie-ti-shi-chang-yu-dao-de-liang-lei-dian-xing-jie-kong-jian-shu-shi-shi-me">5.回溯法解题时常遇到的两类典型解空间树是什么？</span><a href="#5-hui-su-fa-jie-ti-shi-chang-yu-dao-de-liang-lei-dian-xing-jie-kong-jian-shu-shi-shi-me" class="header-anchor"></a></h4><p>回溯法中常见的两类典型的解空间树是子集树和排列树。当所给的问题是从n个元素的集合S中找出满足某种性质的子集时，相应的解空间树称为子集树。这类子集树通常有2n个叶结点，遍历子集树需O（2n）计算时间。当所给的问题是确定n个元素满足某种性质的排列时，相应的解空间树称为排列树。这类排列树通常有n!个叶结点。遍历排列树需要O（n!）计算时间。</p>
+<h4><span id="6-jian-zhi-han-shu-you-na-ji-lei-ge-you-he-yong-tu">6.剪枝函数有哪几类？各有何用途？</span><a href="#6-jian-zhi-han-shu-you-na-ji-lei-ge-you-he-yong-tu" class="header-anchor"></a></h4><p>（1）约束函数 限界函数</p>
+<p>（2）用约束函数在扩展结点处剪去不满足约束的子树； 用限界函数剪去得不到最优解的子树。</p>
+<h4><span id="7-shi-me-shi-p-wen-ti-he-np-wen-ti">7.什么是P问题和NP问题？</span><a href="#7-shi-me-shi-p-wen-ti-he-np-wen-ti" class="header-anchor"></a></h4><p>（1）P（ Polynomial ）问题：如果一个问题可以找到一个能在多项式时间里解决它的</p>
+<p>算法，那么这个问题就属于 P 问题。</p>
+<p>（2）NP（ Non-Deterministic Polynomial ）问题： NP 问题不是非 P 类问题，是多</p>
+<p>项式复杂程度的非确定性问题。是指可以在多项式的时间里验证一个解的问题。 NP 问题的另一个定义是，可以在多项式的时间里猜出一个解的问题。</p>
+<h4><span id="8-shuo-ming-fen-zhi-fa-yu-dong-tai-gui-hua-fa-de-xiang-tong-dian-he-bu-tong-zhi-chu">8.说明分治法与动态规划法的相同点和不同之处？</span><a href="#8-shuo-ming-fen-zhi-fa-yu-dong-tai-gui-hua-fa-de-xiang-tong-dian-he-bu-tong-zhi-chu" class="header-anchor"></a></h4><p>同：基本思想都是将待求解问题分解成若干个子问题先求解子问题， 然后从这些子问题的解得到原问题的解；</p>
+<p>异：（1）适合于用动态规划法求解的问题，经分解得到的子问题往往不是相互独立的。若用分治法解这类问题， 则分解得到的子问题数目太多， 以至于最后解决原问题需要消耗指数时间；</p>
+<p>（2）不同子问题的数目常常只有多项式量级， 在用分治法求解时， 有些子问题被重复计算了许多次。动态规划法保存已解决的子问题的答案，在需要时再找到已得到的答案，可以避免大量重复计算，从而得到多项式时间算法。</p>
+<h4><span id="9-bei-bao-wen-ti-yu-0-1-bei-bao-wen-ti-you-he-qu-bie">9.背包问题与0－1背包问题有何区别？</span><a href="#9-bei-bao-wen-ti-yu-0-1-bei-bao-wen-ti-you-he-qu-bie" class="header-anchor"></a></h4><p>背包问题可以用贪心算法求解，而 0-1 背包问题不能用贪心算法求解。</p>
+<h4><span id="10-hui-su-fa-yu-fen-zhi-xian-jie-fa-zhi-jian-de-xiang-tong-dian-shi-shi-me-bu-tong-zhi-chu-zai-na-xie-fang-mian">10.回溯法与分支限界法之间的相同点是什么？不同之处在哪些方面？</span><a href="#10-hui-su-fa-yu-fen-zhi-xian-jie-fa-zhi-jian-de-xiang-tong-dian-shi-shi-me-bu-tong-zhi-chu-zai-na-xie-fang-mian" class="header-anchor"></a></h4><p>同：他们同是在问题的解空间树上搜索问题解的算法；</p>
+<p>异：（1）求解目标：回溯法的求解目标是找出解空间树中满足约束条件的所有解，而分</p>
+<p>支限界法的求解目标则是找出满足约束条件的一个解， 或是在满足约束条件的解中找出在某</p>
+<p>种意义下的最优解；</p>
+<p>（2）搜索方式的不同： 回溯法以深度优先的方式搜索解空间树， </p>
+<p>而分支限界法则以</p>
+<p>广度优先或以最小耗费优先的方式搜索解空间树。</p>
+<h4><span id="11-shi-me-jiao-tan-xin-xuan-ze-xing-zhi">11.什么叫贪心选择性质</span><a href="#11-shi-me-jiao-tan-xin-xuan-ze-xing-zhi" class="header-anchor"></a></h4><p>所谓贪心选择性质是指所求问题的整体最优解可以通过一系列局部最优的选择， </p>
+<p>即贪心</p>
+<p>选择来达到。</p>
+<h2><span id="tian-biao-ti">填表题</span><a href="#tian-biao-ti" class="header-anchor"></a></h2><h4><span id="zui-chang-gong-gong-zi-xu-lie">最长公共子序列</span><a href="#zui-chang-gong-gong-zi-xu-lie" class="header-anchor"></a></h4><p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225130029954.png" alt="image-20211225130029954"></p>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225130642845.png" alt="image-20211225130642845"></p>
+<h4><span id="ju-zhen-lian-cheng-wen-ti">矩阵连乘问题</span><a href="#ju-zhen-lian-cheng-wen-ti" class="header-anchor"></a></h4><p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225125921091.png" alt="image-20211225125921091"></p>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225125954559.png" alt="image-20211225125954559"></p>
+<h2><span id="zheng-ming-ti">证明题</span><a href="#zheng-ming-ti" class="header-anchor"></a></h2><h4><span id="huo-dong-an-pai-wen-ti">活动安排问题</span><a href="#huo-dong-an-pai-wen-ti" class="header-anchor"></a></h4><p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225130909908.png" alt="image-20211225130909908"></p>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225130921142.png" alt="image-20211225130921142"></p>
+<p>设定命题<br>贪心算法执行到第k步,选择了k项活动 i1,i2,ik</p>
+<p>则存在最优解A,就是所选的这k项的集合 A = {i1,i2,…ik}</p>
+<p>意思就是,要证明我们所用的贪心算法,每一步都是最优解</p>
+<p>设变量<br>设共有n项活动待安排,活动的开始时间分别是s1,s2,…sn</p>
+<p>活动的结束时间分别是 f1,f2,…fn</p>
+<p>将这n个活动按照最早结束时间排好序,也就是f1,f2,…fn从小到大排好序</p>
+<p>排好序的n个活动设为S = {a1,a2,…an}</p>
+<p>这个活动安排题目的最优解,即安排的活动数最多的子序列,设为A</p>
+<p>一共需要选择x次得到最优解</p>
+<p>数学归纳法<br>当算法执行到第k步的话,表示当前已经选择了k项活动.</p>
+<p>当k=1时,我们需要证明最早结束的活动a1,一定被选中</p>
+<p>此时任取最优解B(其实就刚刚选了一个活动),如果B中第一个活动不是a1,那么可以用a1,替换B中的第一个活动<br>替换过后的B’也是当前的最优解.所以无论第一个活动在不在B里,都能找到最优解A使得第一个活动一定在最优解A里</p>
+<p>假设算法执行k次时,得到的是最优解</p>
+<p>A = {i1,i2,…ik}</p>
+<p>算法还没有执行完毕,A中剩下活动选自集合S’ = { i | i 属于S ,si&gt;=fk}<br>S’中的元素肯定输入原集合,但是因为此时已经安排好了k个活动,如果要接着选,那么被选到的活动的开始时间一定是大于等于第k个活动的结束时间</p>
+<p>假设从S’中选择的活动集合是C,那么按照我们的贪心算法C是S’的最优解<br>整体的最优解A = {i1,i2,…ik} U C</p>
+<p>如果C不是最优解,D是最优解,说明D中包含的活动比的多<br>那么整体的最优解应该是 A = {i1,i2,…ik} U D<br>与A = {i1,i2,…ik} U C是最优解相矛盾</p>
+<p>到此<br>我们在假设贪心算法执行k次,所选择的集合是最优解的条件下<br>推出 A = {i1,i2,…ik} U C</p>
+<p>那么当算法执行k+1次时,即从S’中再选出一个元素 i(k+1) 时,根据上面的假设,我们知道 i(k+1) 一定是S’中开始时间最早的活动,而且C是S’的最优解,<br>所以{i1,i2,…ik,i(k+1)} U { C- i(k+1) }也是原问题的最优解.</p>
+<p>总结<br>k=1时,一定会选最早开始的活动<br>假设 k = k时成立<br>也就是最优解 A = {i1,i2,…ik} U C<br>那么有 k = k + 1时<br>A = {i1,i2,…ik,i(k+1)} U { C- i(k+1) }<br>所以对于这道活动安排题,贪心算法所取得的就是最优解</p>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/Screenshot_20211226_082504.jpg" alt="Screenshot_20211226_082504"></p>
+<h4><span id="zui-chang-gong-gong-zi-xu-lie-wen-ti">最长公共子序列问题</span><a href="#zui-chang-gong-gong-zi-xu-lie-wen-ti" class="header-anchor"></a></h4><p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225130728506.png" alt="image-20211225130728506"></p>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225130755402.png" alt="image-20211225130755402"></p>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/Screenshot_20211225_165848_com.huawei.browser_edit_423323632917696.jpg" alt="Screenshot_20211225_165848_com.huawei.browser_edit_423323632917696"></p>
+<h2><span id="suan-fa-ti">算法题</span><a href="#suan-fa-ti" class="header-anchor"></a></h2><h4><span id="bi-sai-ri-cheng-biao-wen-ti">比赛日程表问题</span><a href="#bi-sai-ri-cheng-biao-wen-ti" class="header-anchor"></a></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*算法思路：参与比赛的人数N可能使奇数也可能是偶数，总体上，按照分治法的思想，将人数一分为二，N个选手可以通过N/2个选手的赛程表来决定，递归地将选手一分为二地分割选手，直到剩下两个选手。对于N为奇数地情况可以虚拟出一个选手，然后安排N+1个选手地赛程表，最后忽略虚拟选手地参与。在分割时N/2地情况也做一些特殊处理，前N/2论比赛空选手与下一个未参赛地选手进行比赛。a[i][j]表示运动员i在第j天所遇到的选手*/</span></span><br><span class="line">（<span class="number">1</span>）分治法：</span><br><span class="line"><span class="built_in">Tourna</span>(n):</span><br><span class="line">If n==<span class="number">1</span></span><br><span class="line">a[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line"><span class="keyword">return</span></span><br><span class="line"><span class="built_in">Tourna</span>(n/<span class="number">2</span>) <span class="comment">//递归分割</span></span><br><span class="line"><span class="built_in">Copy</span>(n) <span class="comment">//填表</span></span><br><span class="line">（<span class="number">2</span>）<span class="comment">/*n为偶数地情况Copy()函数：A.将左上角递归计算出地小块地所有数字按其相对位置复制到右下角；B将右上角地小块地所有数字加n/2后按其相对位置复制到左下角，将左下角小块中地所有数字按其相对位置复制到右上角*/</span></span><br><span class="line">Void <span class="built_in">copy</span>(<span class="keyword">int</span> n)&#123;</span><br><span class="line">Int m = n/<span class="number">2</span></span><br><span class="line">For i <span class="number">1</span> to m  <span class="keyword">do</span></span><br><span class="line">For j <span class="number">1</span> to m <span class="keyword">do</span></span><br><span class="line">a[i][j+m] = a[i][j] + m <span class="comment">//小块地数值复制到右下角</span></span><br><span class="line">a[i+m][j] = a[i][j + m] <span class="comment">//右上复制到左下</span></span><br><span class="line">a[i+m][j+m] = a[i][j] <span class="comment">//左下复制到右上</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*（3）一般性描述：n为偶数；n是奇数时增加一个虚拟选手n+1，将问题转换为n是偶数地情形:*/</span></span><br><span class="line"><span class="built_in">Tournament</span>(n):</span><br><span class="line">If n== <span class="number">1</span> : a[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span> </span><br><span class="line"><span class="keyword">return</span> <span class="comment">//分割到最后</span></span><br><span class="line">If n为奇数:<span class="built_in">tournament</span>(n+<span class="number">1</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="comment">//奇数地情况加上虚拟选手</span></span><br><span class="line"><span class="built_in">Tournament</span>(n/<span class="number">2</span>) <span class="comment">//分割</span></span><br><span class="line"><span class="built_in">Makecopy</span>(n) <span class="comment">//这个函数copy分n为偶数和n为奇数地情况</span></span><br><span class="line">（<span class="number">4</span>）判断奇偶</span><br><span class="line"><span class="built_in">Odd</span>(n):</span><br><span class="line"><span class="keyword">return</span> n%<span class="number">2</span></span><br><span class="line">（<span class="number">5</span>）<span class="built_in">makecopy</span>()与copy相似，并区分奇偶情况 </span><br><span class="line"><span class="built_in">Makecopy</span>(n):</span><br><span class="line">If n%<span class="number">2</span> == <span class="number">1</span> &amp;&amp; n/<span class="number">2</span> &gt; <span class="number">1</span> <span class="built_in">copyodd</span>(n) <span class="comment">//对n/2为奇数地情况处理</span></span><br><span class="line"><span class="keyword">else</span> <span class="built_in">copy</span>(n) <span class="comment">//偶数情况</span></span><br><span class="line"><span class="comment">/*（6）copyodd(n)实现n/2为奇数时候地复制</span></span><br><span class="line"><span class="comment">n/2奇数的一种处理方法：前n/2轮比赛空选手参与下一个未参赛的选手进行比赛*/</span></span><br><span class="line"><span class="built_in">Copyodd</span>(n):</span><br><span class="line">Int m = n/<span class="number">2</span></span><br><span class="line">For i <span class="number">1</span> to m <span class="keyword">do</span></span><br><span class="line">b[i] = m + <span class="number">1</span></span><br><span class="line">b[m+i]=b[i]</span><br><span class="line">For i <span class="number">1</span> to m <span class="keyword">do</span></span><br><span class="line">For j <span class="number">1</span> to m+<span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">If a[i][j]&gt;m</span><br><span class="line">a[i][j] = b[i]</span><br><span class="line">A[m+i][j]= (b[i]+m)%n</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">a[m+i][j]=a[i][j]+m</span><br><span class="line">For j <span class="number">2</span> to m <span class="keyword">do</span></span><br><span class="line">a[i][m+j]=b[i+j<span class="number">-1</span>]</span><br><span class="line">a[b[i+j<span class="number">-1</span>][m+j]] = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225122508636.png" alt="image-20211225122508636"></p>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20211225131841115.png" alt="image-20211225131841115"></p>
+<h4><span id="zhao-xin-shu-zui-xiao-de-shan-chu-fang-an-wen-ti">找新数最小的删除方案问题</span><a href="#zhao-xin-shu-zui-xiao-de-shan-chu-fang-an-wen-ti" class="header-anchor"></a></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//全CSDN最菜。GitHub: Catigeart</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">思路：从高位到低位贪心删掉k个数。</span></span><br><span class="line"><span class="comment">每轮先搜索宽度为删除数量+1的数列窗口，保留其中最小数值数位（如有多个最小值，保留高位最小值）</span></span><br><span class="line"><span class="comment">删去最小数值数位左方数位，窗口长度减去已删去数量，移动到最小数值数位右方继续贪心</span></span><br><span class="line"><span class="comment">若删除配额用完，余下的数位直接保留； </span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment">例子：设有10位数字，7519385410，删5个。 </span></span><br><span class="line"><span class="comment">搜索前6个，751938，删掉75，1为保留位</span></span><br><span class="line"><span class="comment">9385410中搜索9385，删9，3为保留位</span></span><br><span class="line"><span class="comment">搜索854，删85，4为保留位</span></span><br><span class="line"><span class="comment">已无删除配额，余下数位直接保留，13410即为所求</span></span><br><span class="line"><span class="comment">若余下数位与删除配额相等，余下全部删去。</span></span><br><span class="line"><span class="comment">例子：12345，删2个，保留123后45删去。 </span></span><br><span class="line"><span class="comment">最坏情况下为前n-k个数字不递减排列，如此一直保留最左方数位而不删除，逐位移动窗口， </span></span><br><span class="line"><span class="comment">窗口长度恒为k+1，每回线性遍历k+1，因此最坏时间复杂度为O(n*(n-k+1))=O(n^2)。</span></span><br><span class="line"><span class="comment">最好情况搜索第一遍即删去k个，O(k+1)。 </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 100000000</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">char</span> n[MAXN];<span class="comment">//use char to avoid error cause by 0 at the end</span></span><br><span class="line"><span class="keyword">char</span> ans[MAXN];<span class="comment">//answer char[]</span></span><br><span class="line"><span class="keyword">int</span> np, ap;<span class="comment">//pointer of n[],ans[]</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> k;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Please input n:&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,n);<span class="comment">//save in char[] to get digit</span></span><br><span class="line">    <span class="keyword">int</span> nlen = <span class="built_in">strlen</span>(n);</span><br><span class="line">    <span class="keyword">if</span>(n[<span class="number">0</span>]==<span class="string">&#x27;-&#x27;</span> || (nlen==<span class="number">1</span> &amp;&amp; n[<span class="number">0</span>]==<span class="string">&#x27;0&#x27;</span>))</span><br><span class="line">    &#123;<span class="comment">//invalid input n</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;n isn&#x27;t a positive integer!\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Please input k:&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;k);</span><br><span class="line">    <span class="keyword">if</span>(nlen &lt;= k)</span><br><span class="line">    &#123;<span class="comment">//invalid input k</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;No enough number !\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> Min, p;<span class="comment">//p used as pointer</span></span><br><span class="line">    <span class="keyword">while</span>(k!=<span class="number">0</span> &amp;&amp; nlen-np&gt;k)</span><br><span class="line">    &#123;<span class="comment">//k is the width of searching window</span></span><br><span class="line">        p = np;</span><br><span class="line">        Min = n[p];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=np+<span class="number">1</span>; i-np&lt;=k; i++)</span><br><span class="line">        &#123;<span class="comment">//linear traverse to get Min digit</span></span><br><span class="line">            <span class="keyword">if</span>(Min &gt; n[i])</span><br><span class="line">            &#123;</span><br><span class="line">                Min = n[i];</span><br><span class="line">                p = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ans[ap] = n[p];</span><br><span class="line">        ap++;<span class="comment">//ap point to the next digit</span></span><br><span class="line">        k = k-(p-np);<span class="comment">//k - (the number of deleted digits)</span></span><br><span class="line">        np = p+<span class="number">1</span>;<span class="comment">//for p is kept in ans[], np should point to the next one</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(nlen-np &lt;= k)</span><br><span class="line">        np = nlen;<span class="comment">//delete lasted digits</span></span><br><span class="line">    <span class="keyword">while</span>(n[np] != <span class="number">0</span>)</span><br><span class="line">    &#123;<span class="comment">//if still digits lasted, keep them directly</span></span><br><span class="line">        ans[ap] = n[np];</span><br><span class="line">        ap++;</span><br><span class="line">        np++;</span><br><span class="line">    &#125;</span><br><span class="line">    ap = <span class="number">0</span>;<span class="comment">//reset ans point </span></span><br><span class="line">    <span class="keyword">if</span>(ans[ap] == <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="built_in">printf</span>(<span class="string">&quot;(&quot;</span>);</span><br><span class="line">    	<span class="keyword">while</span>(ans[ap] == <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">    	&#123;</span><br><span class="line">    		<span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,ans[ap]);</span><br><span class="line">    		ap++;</span><br><span class="line">		&#125;</span><br><span class="line">    	<span class="built_in">printf</span>(<span class="string">&quot;)&quot;</span>);	</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(ans[ap])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,ans[ap]);</span><br><span class="line">    	ap++;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>容易观察到，算法中有一个外层for循环和while循环，所以时间复杂度为：O(n<sup>2</sup>)</p>
+<h4><span id="0-1-bei-bao-wen-ti">0-1背包问题</span><a href="#0-1-bei-bao-wen-ti" class="header-anchor"></a></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">分支限界法是也是在问题的解空间中搜索解的算法。在搜索过程中是以广度优先的方式搜索解空间树或者解空间图。分支限界法会先建一个活结点表, 用于存放扩展结点</span><br><span class="line"><span class="comment">//pp和ww分别为物品的价值数组和重量数组，xx数组用来记录第几个物品装入背包，0代表未装入背包，1代表装入背包 ，cc代表背包容量</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">knapsack</span><span class="params">(<span class="keyword">double</span>[] pp, <span class="keyword">double</span>[] ww, <span class="keyword">double</span> cc, <span class="keyword">int</span>[] xx)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//返回最大价值，bestx返回最优解</span></span><br><span class="line">        BBKnapsack.c = cc;</span><br><span class="line">       <span class="comment">//n代表有多少件物品</span></span><br><span class="line">        BBKnapsack.n = pp.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//定义依单位重量价值排序物品数组</span></span><br><span class="line">        Element[] q = <span class="keyword">new</span> Element[BBKnapsack.n];</span><br><span class="line">        <span class="keyword">double</span> ws = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">double</span> ps = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span> to BBKnapsack.n step <span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">            q[i - <span class="number">1</span>] = <span class="keyword">new</span> Element(i, pp[i] / ww[i]);</span><br><span class="line">            ps += pp[i];</span><br><span class="line">            ws += ww[i];</span><br><span class="line">        endfor</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> ws &lt;= BBKnapsack.c then <span class="comment">//所有物品装包</span></span><br><span class="line">        </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= BBKnapsack.n; i++)</span><br><span class="line">                xx[i] = i;</span><br><span class="line">            <span class="keyword">return</span> ps;</span><br><span class="line">       endif</span><br><span class="line"></span><br><span class="line">        <span class="comment">//依据单位重量价值排序</span></span><br><span class="line">        MergeSort.mergSort(q);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//初始化类数据成员</span></span><br><span class="line">        BBKnapsack.p = <span class="keyword">new</span> <span class="keyword">double</span>[BBKnapsack.n + <span class="number">1</span>];</span><br><span class="line">        BBKnapsack.w = <span class="keyword">new</span> <span class="keyword">double</span>[BBKnapsack.n + <span class="number">1</span>];</span><br><span class="line">       <span class="comment">//将物品重量和相对应的价值按照单位重量的价值从大到小排序</span></span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span> to BBKnapsack.n step <span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">            BBKnapsack.p[i] = pp[q[BBKnapsack.n - i].id];</span><br><span class="line">            BBKnapsack.w[i] = ww[q[BBKnapsack.n - i].id];</span><br><span class="line">        then</span><br><span class="line"></span><br><span class="line">        BBKnapsack.cw = <span class="number">0</span>;</span><br><span class="line">        BBKnapsack.cp = <span class="number">0</span>;</span><br><span class="line">        BBKnapsack.bestx = <span class="keyword">new</span> <span class="keyword">int</span>[BBKnapsack.n + <span class="number">1</span>];</span><br><span class="line">        <span class="comment">//调用bbKnapsack求解问题的最优解</span></span><br><span class="line">        <span class="keyword">double</span> maxp = bbKnapsack();</span><br><span class="line">        <span class="keyword">for</span> i to BBKnapsack.n step <span class="number">1</span> then</span><br><span class="line">            xx[q[BBKnapsack.n - i].id] = BBKnapsack.bestx[i];</span><br><span class="line">        endfor</span><br><span class="line">        <span class="keyword">return</span> maxp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="comment">//优先队列式分支限界法，返回最大值，bestX返回最优解</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">bbKnapsack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//初始化</span></span><br><span class="line">        BBnode enode = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//当前最优值</span></span><br><span class="line">        <span class="keyword">double</span> bestp = <span class="number">0.0</span>;</span><br><span class="line">        <span class="comment">//价值上界</span></span><br><span class="line">        <span class="keyword">double</span> up = bound(<span class="number">1</span>);</span><br><span class="line">        <span class="comment">//搜索子集空间树</span></span><br><span class="line">        <span class="keyword">while</span>  i != BBKnapsack.n + <span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">            <span class="comment">//非叶子节点</span></span><br><span class="line">            <span class="comment">//检查当前扩展结点的左儿子节点</span></span><br><span class="line">            <span class="keyword">double</span> wt = BBKnapsack.cw + BBKnapsack.w[i];</span><br><span class="line">            <span class="keyword">if</span>  wt &lt;= BBKnapsack.c then</span><br><span class="line">                <span class="comment">//左儿子节点为可行结点</span></span><br><span class="line">                <span class="keyword">if</span> (BBKnapsack.cp + BBKnapsack.p[i] &gt; bestp)</span><br><span class="line">                    bestp = BBKnapsack.cp + BBKnapsack.p[i];</span><br><span class="line">                addLiveNode(up, BBKnapsack.cp + BBKnapsack.p[i], BBKnapsack.cw + BBKnapsack.w[i], i + <span class="number">1</span>, enode, <span class="keyword">true</span>);</span><br><span class="line">            endif</span><br><span class="line">            up = bound(i + <span class="number">1</span>);</span><br><span class="line">            <span class="comment">//检查当前扩展节点的右儿子节点</span></span><br><span class="line">            <span class="keyword">if</span>  up &gt;= bestp then</span><br><span class="line">                <span class="comment">//右子树可能含最优解</span></span><br><span class="line">                addLiveNode(up, BBKnapsack.cp, BBKnapsack.cw, i + <span class="number">1</span>, enode, <span class="keyword">false</span>);</span><br><span class="line">            endif</span><br><span class="line">            <span class="comment">//取下一个扩展节点</span></span><br><span class="line">            HeapNode node = (HeapNode) BBKnapsack.heap.removeMax();</span><br><span class="line">            enode = node.liveNode;</span><br><span class="line">            BBKnapsack.cw = node.weight;</span><br><span class="line">            BBKnapsack.cp = node.profit;</span><br><span class="line">            up = node.upperProfit;</span><br><span class="line">            i = node.level;</span><br><span class="line">        endwhile</span><br><span class="line"></span><br><span class="line">        <span class="comment">//构造当前最优解</span></span><br><span class="line">        <span class="keyword">for</span> j to BBKnapsack.n to <span class="number">1</span> step -<span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">            BBKnapsack.bestx[j] = (enode.leftChild) ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">            enode = enode.parent;</span><br><span class="line">        endfor</span><br><span class="line">        <span class="keyword">return</span> BBKnapsack.cp;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+T(n) = O(n2^n)</script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://decodezoom.cn/2021/12/25/suanfa/" data-id="cl3k7275u0002xgvo3he7ehkn" data-title="算法设计与分析" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/12/28/java/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java复习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/12/10/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%AE%A2%E8%A7%82%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">软件工程客观题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/05/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">计算机图形学</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/02/%E6%B1%87%E7%BC%96/">汇编</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/28/java/">Java复习</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/25/suanfa/">算法设计与分析</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/10/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%AE%A2%E8%A7%82%E9%A2%98/">软件工程客观题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+
+  <div style="font-size: 13px">
+    <link rel="stylesheet" href="https://widget.heweather.net/standard/static/css/he-standard.css?v=1.4.0"><script src="https://widget.heweather.net/standard/static/js/he-standard.js?v=1.4.0"></script><script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    本站总访问量  <a id="busuanzi_value_site_pv"></a> 次<br>
+    本站访客数<a id="busuanzi_value_site_uv"></a>人次
+</div>
+
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?90c91c134971ea31baf103ce4175c5a3";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+  
+
+  
+      
+  
+  <title>数据库笔记 | TimePhoenix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="概要 触发器 DDL（数据定义语言）触发器 登陆触发器 insert触发器 update 触发器 替代触发器 delete触发器 嵌套触发器 递归触发器 查看已建立的触发器   （1）查看数据库中所有的触发器 （2）删除触发器     概要DbmsDBMS基本功能DBMS系统中数据库的保护功能主要包括哪些？三级模式数据库客户端&#x2F;服务器体系结构理解联系的类型判断数据库特点有哪些？ 独立性高;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库笔记">
+<meta property="og:url" content="http://decodezoom.cn/2021/07/21/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E5%8D%95%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="TimePhoenix">
+<meta property="og:description" content="概要 触发器 DDL（数据定义语言）触发器 登陆触发器 insert触发器 update 触发器 替代触发器 delete触发器 嵌套触发器 递归触发器 查看已建立的触发器   （1）查看数据库中所有的触发器 （2）删除触发器     概要DbmsDBMS基本功能DBMS系统中数据库的保护功能主要包括哪些？三级模式数据库客户端&#x2F;服务器体系结构理解联系的类型判断数据库特点有哪些？ 独立性高;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210528141825561.png">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210529155721872.png">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210529161014271.png">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210529163935193.png">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210529164636661.png">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210529170048135.png">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210529171342476.png">
+<meta property="article:published_time" content="2021-07-21T07:15:04.355Z">
+<meta property="article:modified_time" content="2021-06-20T12:09:52.350Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210528141825561.png">
+  
+    <link rel="alternate" href="/atom.xml" title="TimePhoenix" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico"> 
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TimePhoenix</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://decodezoom.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-数据库简单笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/21/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E5%8D%95%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2021-07-21T07:15:04.355Z" itemprop="datePublished">2021-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      数据库笔记
+    </h1>
+  
+
+
+
+  <link rel="icon" href="images/favicon.ico">    
+
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#gai-yao">概要</a></li>
+<li><a href="#hong-fa-qi">触发器</a></li>
+<li><a href="#ddl-shu-ju-ding-yi-yu-yan-hong-fa-qi">DDL（数据定义语言）触发器</a></li>
+<li><a href="#deng-lu-hong-fa-qi">登陆触发器</a></li>
+<li><a href="#insert-hong-fa-qi">insert触发器</a></li>
+<li><a href="#update-hong-fa-qi">update 触发器</a></li>
+<li><a href="#ti-dai-hong-fa-qi">替代触发器</a></li>
+<li><a href="#delete-hong-fa-qi">delete触发器</a></li>
+<li><a href="#qian-tao-hong-fa-qi">嵌套触发器</a></li>
+<li><a href="#di-gui-hong-fa-qi">递归触发器</a><ul>
+<li><a href="#cha-kan-yi-jian-li-de-hong-fa-qi">查看已建立的触发器</a></li>
+</ul>
+</li>
+<li><a href="#1-cha-kan-shu-ju-ku-zhong-suo-you-de-hong-fa-qi">（1）查看数据库中所有的触发器</a></li>
+<li><a href="#2-shan-chu-hong-fa-qi">（2）删除触发器</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h3><span id="gai-yao">概要</span><a href="#gai-yao" class="header-anchor"></a></h3><h4><span id="dbms">Dbms</span><a href="#dbms" class="header-anchor"></a></h4><h4><span id="dbms-ji-ben-gong-neng">DBMS基本功能</span><a href="#dbms-ji-ben-gong-neng" class="header-anchor"></a></h4><h4><span id="dbms-xi-tong-zhong-shu-ju-ku-de-bao-hu-gong-neng-zhu-yao-bao-gua-na-xie">DBMS系统中数据库的保护功能主要包括哪些？</span><a href="#dbms-xi-tong-zhong-shu-ju-ku-de-bao-hu-gong-neng-zhu-yao-bao-gua-na-xie" class="header-anchor"></a></h4><h4><span id="san-ji-mo-shi">三级模式</span><a href="#san-ji-mo-shi" class="header-anchor"></a></h4><h4><span id="shu-ju-ku-ke-hu-duan-fu-wu-qi-ti-xi-jie-gou-li-jie">数据库客户端/服务器体系结构理解</span><a href="#shu-ju-ku-ke-hu-duan-fu-wu-qi-ti-xi-jie-gou-li-jie" class="header-anchor"></a></h4><h4><span id="lian-xi-de-lei-xing-pan-duan">联系的类型判断</span><a href="#lian-xi-de-lei-xing-pan-duan" class="header-anchor"></a></h4><h4><span id="shu-ju-ku-te-dian-you-na-xie">数据库特点有哪些？</span><a href="#shu-ju-ku-te-dian-you-na-xie" class="header-anchor"></a></h4><ul>
+<li>独立性高;</li>
+<li>数据由DBMS统一管理和控制;</li>
+<li>共享性高</li>
+</ul>
+<h4><span id="shu-ju-ku-xi-tong-wei-shi-me-neng-ju-you-jiao-gao-de-shu-ju-luo-ji-du-li-xing">数据库系统为什么能具有较高的数据逻辑独立性？</span><a href="#shu-ju-ku-xi-tong-wei-shi-me-neng-ju-you-jiao-gao-de-shu-ju-luo-ji-du-li-xing" class="header-anchor"></a></h4><p> 数据库系统的三级模式是数据的三个抽象级别，它把数据的具体组织留给数据库管理系统，使用户能逻辑地、抽象地处理数据。</p>
+<ul>
+<li><p>数据库在这三级模式之间提供了两层映像：外模式/模式映像和模式/内模式映像。正是这两层映像保证了数据库系统中的数据能够具有较高的逻辑独立性和物理独立性。</p>
+</li>
+<li><p>外模式/模式映像（逻辑独立性）：当模式改变时，由数据库管理员对各个外模式/模式的映像作相应改变，可以使外模式保持不变</p>
+</li>
+<li>模式/内模式映像（物理独立性）：数据库中只有一个模式，也只有一个内模式，所以模式/内模式映像是唯一的，它定义了数据全局逻辑结构与存储结构之间的对应关系。</li>
+<li>当数据库的存储结构改变时，由数据库管理员对模式/内模式映像作相应改变，可以使模式保持不变，从而应用程序也不必改变。保证了数据与程序的物理独立性</li>
+<li>数据库的二级映像保证了数据库外模式的稳定性从底层保证了应用程序的稳定性，除非应用需求本身发生变化，否则应用程序一般不需要修改<br>总之就是由于存在二级映像就让整个数据库的的操作是相对独立的,在改变里面内容的时候外模式下的操作可以不变在操作外模式的时候内模式的内容不会改变</li>
+</ul>
+<h4><span id="gai-nian-mo-xing-215">概念模型（215）</span><a href="#gai-nian-mo-xing-215" class="header-anchor"></a></h4><p>（1）定义：现实世界到信息世界的第一层抽象，确定领域实体属性关系等。</p>
+<p>（2）表示方式：E-R图。 </p>
+<h4><span id="zhu-jian">主键</span><a href="#zhu-jian" class="header-anchor"></a></h4><p>指的是一个列或多列的组合，其值能唯一地标识表中的每一行，通过它可强制表的实体完整性。主键主要是用与其他表的外键关联，以及本记录的修改与删除</p>
+<h4><span id="wai-jian">外键</span><a href="#wai-jian" class="header-anchor"></a></h4><p> 如果一个字段X在一张表（表一）中是主关键字，而在另外一张表（表二）中不是主关键字，则字段X称为表二的外键；换句话说如果关系模式R1中的某属性集不是自己的主键，而是关系模式R2的主键，则该属性集称为是关系模式R1的外键</p>
+<p>设F是基本关系R的一个或一组属性，但不是关系的键，Ks是基本关系S的主键。如果F与Ks相对应，则称F是R的外键，并称基本关系R为参照关系，基本关系S为被参照关系或目标关系。</p>
+<h4><span id="jie-shi-guan-xi-mo-xing-guan-xi-mo-shi-he-guan-xi-41">解释关系模型、关系模式和关系（41）</span><a href="#jie-shi-guan-xi-mo-xing-guan-xi-mo-shi-he-guan-xi-41" class="header-anchor"></a></h4><h5><span id="guan-xi-mo-shi">关系模式</span><a href="#guan-xi-mo-shi" class="header-anchor"></a></h5><p>关系模式是对关系的描述（有哪些属性，各个属性之间的依赖关系如何），模式的一个具体值称为模式的一个实例。模式反应是数据的结构及其联系，是型，是相对稳定的，实例反应的是关系某一时刻的状态，是值，是相对变动的。</p>
+<p>关系模式有约定的数学表示，R（U，D，DOM，F），R指关系名，U指一组属性，D指域，DOM指属性到域的映射，F就是指数据依赖</p>
+<h5><span id="guan-xi">关系</span><a href="#guan-xi" class="header-anchor"></a></h5><script type="math/tex; mode=display">
+D_1 \times D_2 \times ···D_n 的子集叫做在域D_1，D_2，···，D_n 上的关系，
+\\表示为R(D_1，D_2，···，D_n)</script><p>R表示关系的名字，n是关系的度或者目。关系中的每个元素都是关系的元组，通常用t表示。当 n=1 时，称该关系为单元关系，或一元关系，当 n=2 时，称该关系为二元关系</p>
+<p>关系是笛卡尔积的有限子集一个关系对应着一个二维表，二维表就是关系名。表的每一行对应一个元组，表的每一列对应一个域</p>
+<h5><span id="guan-xi-mo-xing">关系模型</span><a href="#guan-xi-mo-xing" class="header-anchor"></a></h5><p>关系模型是指用二维表的形式表示实体和实体间联系的数据模型，是一个数据库</p>
+<h4><span id="ju-li-shuo-ming-guan-xi-can-zhao-wan-zheng-xing-de-han-yi">举例说明关系参照完整性的含义。</span><a href="#ju-li-shuo-ming-guan-xi-can-zhao-wan-zheng-xing-de-han-yi" class="header-anchor"></a></h4><p> 例如，如果在学生表和选修课之间用学号建立关联，学生表是主表，选修课是从表，那么，在向从表中输入一条新记录时，系统要检查新记录的学号是否在主表中已存在，如果存在，则允许执行输入操作，否则拒绝输入，这就是参照完整性。</p>
+<p>参照完整性还体现在对主表中的删除和更新操作，例如，如果删除主表中的一条记录，则从表中凡是外键的值与主表的主键值相同的记录也会被同时删除，将此称为级联删除；如果修改主表中主关键字的值，则从表中相应记录的外键值也随之被修改，将此称为级联更新。</p>
+<h4><span id="guan-xi-dai-shu-chuan-tong-ji-he-yun-suan">关系代数传统集合运算</span><a href="#guan-xi-dai-shu-chuan-tong-ji-he-yun-suan" class="header-anchor"></a></h4><p> 传统集合运算：并(∪)、交(∩)、差(—)、笛卡尔积(×)</p>
+<h4><span id="shi-tu-li-jie">视图理解</span><a href="#shi-tu-li-jie" class="header-anchor"></a></h4><p>从用户角度来看，一个视图是从一个特定的角度来查看数据库中的数据。从数据库系统内部来看，一个视图是由SELECT语句组成的查询定义的虚拟表。从数据库系统内部来看，视图是由一张或多张表中的数据组成的，从数据库系统外部来看，视图就如同一张表一样，对表能够进行的一般操作都可以应用于视图，例如查询，插入，修改，删除操作等。</p>
+<p>视图是一个虚拟表，其内容由查询定义。同真实的表一样，视图包含一系列带有名称的列和行数据。但是，视图并不在数据库中以存储的数据值集形式存在。行和列数据来自由定义视图的查询所引用的表，并且在引用视图时动态生成。对其中所引用的基础表来说，视图的作用类似于筛选。定义视图的筛选可以来自当前或其它数据库的一个或多个表，或者其它视图。分布式查询也可用于定义使用多个异类源数据的视图。</p>
+<p>视图是存储在数据库中的查询的SQL 语句，它主要出于两种原因：安全原因， 视图可以隐藏一些数据，如：社会保险基金表，可以用视图只显示姓名，地址，而不显示社会保险号和工资数等，另一原因是可使复杂的查询易于理解和使用。</p>
+<p>视图一经定义便存储在数据库中，与其相对应的数据并没有像表那样又在数据库中再存储一份，通过视图看到的数据只是存放在基本表中的数据。对视图的操作与对表的操作一样，可以对其进行查询、修改(有一定的限制)、删除。</p>
+<p>当对通过视图看到的数据进行修改时，相应的基本表的数据也要发生变化，同时，若基本表的数据发生变化，则这种变化也可以自动地反映到视图中。</p>
+<h4><span id="grant-revoke-yu-ju-li-jie">Grant revoke语句理解</span><a href="#grant-revoke-yu-ju-li-jie" class="header-anchor"></a></h4><p> grant和revoke是向用户授予或收回对数据的操作权限。</p>
+<p>grant语义：将对指定操作对象的指定操作权限授予指定的用户</p>
+<ul>
+<li><p>发出GRANT：数据库管理员<br>数据库对象创建者（即属主Owner）<br>拥有该权限的用户 </p>
+</li>
+<li><p>按受权限的用户：<br>一个或多个具体用户<br>PUBLIC（即全体用户） </p>
+</li>
+<li><p>WITH GRANT OPTION子句:<br>指定：可以再授予<br>没有指定：不能传播<br>不允许循环授权</p>
+</li>
+</ul>
+<p>   授予的权限可以由数据库管理员或其他授权者用REVOKE语句收回</p>
+<h4><span id="shi-ti-wan-zheng-xing-yue-shu-shi-xian">实体完整性约束实现</span><a href="#shi-ti-wan-zheng-xing-yue-shu-shi-xian" class="header-anchor"></a></h4><p> primary key</p>
+<p>表级约束条件，列级约束条件</p>
+<p>检查主码值是否唯一，如果不唯一，拒绝插入或修改</p>
+<p>检查主码的各个属性是否为空，只要有一个为空拒绝插入或修改</p>
+<h4><span id="shu-ju-wan-zheng-xing-yue-shu-tiao-jian-de-li-jie">数据完整性约束条件的理解</span><a href="#shu-ju-wan-zheng-xing-yue-shu-tiao-jian-de-li-jie" class="header-anchor"></a></h4><ul>
+<li>实体完整性约束：即主码所要满足的条件，主码要求非空并且唯一；</li>
+<li>参照完整性约束：即外码所要满足的条件，外码的取值要么为空值，要么为在其对应的主码中出现过的值；</li>
+<li>用户自定义完整性约束：包括取值范围（即check约束）、非空约束（not null）、唯一约束（unique）、缺省值约束（default）</li>
+</ul>
+<h4><span id="zhu-shu-xing-ding-yi">主属性定义</span><a href="#zhu-shu-xing-ding-yi" class="header-anchor"></a></h4><p> 包含在任意候选码中的属性</p>
+<h4><span id="shi-me-shi-shu-ju-ku-de-cun-chu-guo-cheng-shi-yong-cun-chu-guo-cheng-you-shi-me-hao-chu-256">什么是数据库的存储过程？使用存储过程有什么好处？（256）</span><a href="#shi-me-shi-shu-ju-ku-de-cun-chu-guo-cheng-shi-yong-cun-chu-guo-cheng-you-shi-me-hao-chu-256" class="header-anchor"></a></h4><p>什么是存错过程：</p>
+<p> 存储过程是由过程化SQL语句书写的过程，这个过程经编译和优化后储存在数据库服务器中，因此称他为存储过程，使用时只要调用即可</p>
+<p>好处：</p>
+<ul>
+<li>由于存储过程不象解释执行的SQL语句那样在提出操作请求时才进行语法分析和优化工作，因运行效率高，它提供了在服务器端快执行SQL语句的有效途径</li>
+<li>存储过程降低了客户机和服务器之间的通信量。客户机应用程序只需要通过网络向服务器发出调用存储过程的名字和参数，就可以让关系数据库系统执行其中的多条SQL语句并进行数据处理，只有最终结果返回客户端</li>
+<li>方便实施企业规则。</li>
+</ul>
+<h4><span id="shi-me-shi-hong-fa-qi-hong-fa-qi-de-lei-xing-you-na-xie">什么是触发器，触发器的类型有哪些？</span><a href="#shi-me-shi-hong-fa-qi-hong-fa-qi-de-lei-xing-you-na-xie" class="header-anchor"></a></h4><p> 触发器是用户定义在关系表上的一类有事件驱动的特殊过程，又叫做事件-条件-动作规则。</p>
+<p>类型：</p>
+<ul>
+<li>DML（数据操作语言）触发器</li>
+<li>DDL（数据定义语言）触发器</li>
+<li>登陆触发器</li>
+</ul>
+<h4><span id="fan-shi-de-pan-duan">范式的判断</span><a href="#fan-shi-de-pan-duan" class="header-anchor"></a></h4><p>1NF：如果一个关系模式R的所有属性都是不可分的基本数据项，则R∈1NF。通俗点说就是每个属性(列)不能重复</p>
+<p>2NF：若R∈1NF，并且每一个非主属性都完全函数依赖于R的码(候选码)，则R∈2NF</p>
+<p>3NF：3NF指在2NF的基础上,数据表中不存在非关键字段对任一候选关键字段的传递函数依赖。简而言之，第三范式就是属性不依赖于其它非主属性</p>
+<p>4NF：通常认为BCNF时修正的3NF。在第三范式的基础上，数据库表中如果不存在任何字段对任一候选关键字段的传递函数依赖，则是BC范式</p>
+<h4><span id="shu-ju-zi-dian-zu-cheng-89">数据字典组成（89）</span><a href="#shu-ju-zi-dian-zu-cheng-89" class="header-anchor"></a></h4><p>是关系数据库管理系统内部的一组系统表，它记录了数据库中所有定义信息：</p>
+<ul>
+<li>关系模式定义</li>
+<li>视图定义</li>
+<li>索引定义</li>
+<li>完整性约束定义</li>
+<li>各类用户对数据库的操作权限</li>
+<li>统计信息等</li>
+</ul>
+<h4><span id="cun-qu-kong-zhi-ji-zhi-zhu-yao-ce-lue-you-na-xie">存取控制机制主要策略有哪些？</span><a href="#cun-qu-kong-zhi-ji-zhi-zhu-yao-ce-lue-you-na-xie" class="header-anchor"></a></h4><ul>
+<li>定义用户权限，并将用户权限登记到数据字典中<br>用户对某一数据对象的操作权力称为权限<br>DBMS提供适当的语言来定义用户权限，存放在数据字典中，称做安全规则或授权规则 </li>
+<li><p>合法权限检查<br>用户发出存取数据库操作请求<br>DBMS查找数据字典，进行合法权限检查</p>
+<p>自主存取控制</p>
+</li>
+</ul>
+<p>强制存取控制</p>
+<h4><span id="shu-ju-ku-hai-liang-bei-fen-zeng-liang-bei-fen-li-jie">数据库海量备份、增量备份理解</span><a href="#shu-ju-ku-hai-liang-bei-fen-zeng-liang-bei-fen-li-jie" class="header-anchor"></a></h4><p> 海量备份：每次转储全部数据库</p>
+<p> 增量备份：只转储上次转储后更新过的数据</p>
+<ul>
+<li>从恢复角度看，使用海量转储得到的后备副本进行恢复往往更方便</li>
+<li>如果数据库很大，事务处理又十分频繁，则增量转储方式更实用更有效</li>
+</ul>
+<h4><span id="shu-ju-ku-hui-fu-de-ji-ben-yuan-li">数据库恢复的基本原理</span><a href="#shu-ju-ku-hui-fu-de-ji-ben-yuan-li" class="header-anchor"></a></h4><p>基本原理： 冗余<br>利用存储在系统别处的冗余数据来重建数据库中已被破坏或不正确的那部分数据</p>
+<h4><span id="shu-ju-ku-hui-fu-guo-cheng-zhong-she-ji-dao-de-rong-yu-shu-ju-you-na-xie">数据库恢复过程中，涉及到的冗余数据有哪些</span><a href="#shu-ju-ku-hui-fu-guo-cheng-zhong-she-ji-dao-de-rong-yu-shu-ju-you-na-xie" class="header-anchor"></a></h4><p> 数据转储</p>
+<p>登记日志文件</p>
+<h4><span id="shi-me-shi-jian-cha-dian-ji-zhi">什么是检查点机制</span><a href="#shi-me-shi-jian-cha-dian-ji-zhi" class="header-anchor"></a></h4><ul>
+<li>在日志文件中增加检查点记录（checkpoint）</li>
+<li>增加重新开始文件</li>
+<li>恢复子系统在登录日志文件期间动态地维护日志</li>
+</ul>
+<h4><span id="shi-me-shi-shu-ju-ku-jing-xiang-ta-you-shi-me-yong-tu">什么是数据库镜像？它有什么用途。</span><a href="#shi-me-shi-shu-ju-ku-jing-xiang-ta-you-shi-me-yong-tu" class="header-anchor"></a></h4><ul>
+<li>数据库管理系统自动把整个数据库或其中的关键数据复制到另一个磁盘上</li>
+<li>数据库管理系统自动保证镜像数据与主数据的一致性 每当主数据库更新时，数据库管理系统自动把更新后的数据复制过去</li>
+</ul>
+<p>用途：</p>
+<ul>
+<li><p>出现介质故障时</p>
+<ul>
+<li>可由镜像磁盘继续提供使用</li>
+<li>同时数据库管理系统自动利用镜像磁盘数据进行数据库的恢复</li>
+<li>不需要关闭系统和重装数据库副本</li>
+</ul>
+</li>
+<li><p>没有出现故障时</p>
+<ul>
+<li>可用于并发操作</li>
+<li>一个用户对数据加排他锁修改数据，其他用户可以读镜像数据库上的数据，而不必等待该用户释放锁</li>
+</ul>
+</li>
+</ul>
+<h4><span id="shi-wu-de-commit-cao-zuo-he-rollback-cao-zuo-ge-zuo-liao-shi-me-shi-qing">事务的COMMIT操作和ROLLBACK操作各做了什么事情？</span><a href="#shi-wu-de-commit-cao-zuo-he-rollback-cao-zuo-ge-zuo-liao-shi-me-shi-qing" class="header-anchor"></a></h4><p>COMMIT</p>
+<ul>
+<li>事务正常结束   </li>
+<li>提交事务的所有操作（读+更新）</li>
+<li><p>事务中所有对数据库的更新写回到磁盘上的物理数据库中 </p>
+<p>ROLLBACK</p>
+</li>
+<li><p>事务异常终止</p>
+</li>
+<li>事务运行的过程中发生了故障，不能继续执行</li>
+<li>系统将事务中对数据库的所有已完成的操作全部撤销 </li>
+<li>事务滚回到开始时的状态</li>
+</ul>
+<h4><span id="bing-fa-cao-zuo-dai-lai-liao-na-xie-wen-ti">并发操作带来了哪些问题？</span><a href="#bing-fa-cao-zuo-dai-lai-liao-na-xie-wen-ti" class="header-anchor"></a></h4><ul>
+<li>会产生多个事务同时存取同一数据的情况 </li>
+<li>可能会存取和存储不正确的数据，破坏事务隔离性和数据库的一致性</li>
+</ul>
+<h4><span id="du-zang-shu-ju-de-li-jie">读脏数据的理解</span><a href="#du-zang-shu-ju-de-li-jie" class="header-anchor"></a></h4><ul>
+<li>事务T1修改某一数据，并将其写回磁盘</li>
+<li>事务T2读取同一数据后，T1由于某种原因被撤销</li>
+<li>这时T1已修改过的数据恢复原值，T2读到的数据就与数据库中的数据不一致</li>
+<li>T2读到的数据就为“脏”数据，即不正确的数据  </li>
+</ul>
+<h4><span id="x-suo-he-s-suo">X锁和S锁</span><a href="#x-suo-he-s-suo" class="header-anchor"></a></h4><ul>
+<li>排它锁又称为写锁<br>若事务T对数据对象A加上X锁，则只允许T读取和修改A，其它任何事务都不能再对A加任何类型的锁，直到T释放A上的锁<br>保证其他事务在T释放A上的锁之前不能再读取和修改A  </li>
+<li>共享锁又称为读锁<br>若事务T对数据对象A加上S锁，则事务T可以读A但不能修改A，其它事务只能再对A加S锁，而不能加X锁，直到T释放A上的S锁<br>保证其他事务可以读A，但在T释放A上的S锁之前不能对A做任何修改 </li>
+</ul>
+<h4><span id="si-suo-de-fa-sheng-shi-hao-shi-huan-shi-pi-shi-shi-shuo-ming-li-you-ru-he-jie-chu-si-suo-zhuang-tai">死锁的发生是好事还是坏事？试说明理由。如何解除死锁状态？</span><a href="#si-suo-de-fa-sheng-shi-hao-shi-huan-shi-pi-shi-shi-shuo-ming-li-you-ru-he-jie-chu-si-suo-zhuang-tai" class="header-anchor"></a></h4><p> 在数据库系统运行时死锁的状态是我们所不希望的因此死锁本身是一件坏事。但是如果我们不让死锁发生而让事务任意地发展下去最后可能破坏数据库中的数据或者用户读了错误的数据。从这个意义上讲死锁发生是一件好事可以防止错误的发生。<br>在发生死锁后系统的死锁处理机制和恢复机制就能发挥作用。</p>
+<p>解决方法：抽取某个事务作为牺牲事务将其撤销并做回滚操作使系统可以摆脱死锁状态继续正确地运行下去</p>
+<h4><span id="ke-chuan-xing-hua-diao-du">可串行化调度</span><a href="#ke-chuan-xing-hua-diao-du" class="header-anchor"></a></h4><p> 执行结果等价于串行调度的调度也是正确的，称为可串行化调度</p>
+<p> 多个事务的并发执行是正确的，当且仅当其结果与按某一次序串行地执行这些事务时的结果相同</p>
+<ul>
+<li>可串行性<br>是并发事务正确调度的准则<br>一个给定的并发调度，当且仅当它是可串行化的，才认为是正确调度 </li>
+</ul>
+<h4><span id="liang-duan-suo">两段锁</span><a href="#liang-duan-suo" class="header-anchor"></a></h4><p>事务分为两个阶段</p>
+<ul>
+<li>第一阶段是获得封锁，也称为扩展阶段<br>事务可以申请获得任何数据项上的任何类型的锁，但是不能释放任何锁 </li>
+<li>第二阶段是释放封锁，也称为收缩阶段<br>事务可以释放任何数据项上的任何类型的锁，但是不能再申请任何锁 </li>
+</ul>
+<h3><span id="hong-fa-qi">触发器</span><a href="#hong-fa-qi" class="header-anchor"></a></h3><h4><span id="dml-shu-ju-cao-zuo-yu-yan-hong-fa-qi">DML（数据操作语言）触发器</span><a href="#dml-shu-ju-cao-zuo-yu-yan-hong-fa-qi" class="header-anchor"></a></h4><p>DML是附加在特定表或视图上的操作代码，当数据库操作语言事件时执行这些操作。常用的DML触发器有三种：</p>
+<ul>
+<li>insert触发器</li>
+<li>delete触发器</li>
+<li>update触发器</li>
+</ul>
+<p>DML触发器适用范围：</p>
+<ul>
+<li>通过数据中的相关表实现级联更改</li>
+<li>防止恶意或者错误的insert、update、delete操作，并强制执行check约束定义的限制更为复杂的其他限制</li>
+<li>评估数据修改前后表的状态，并根据该差异采取措施</li>
+</ul>
+<h3><span id="ddl-shu-ju-ding-yi-yu-yan-hong-fa-qi">DDL（数据定义语言）触发器</span><a href="#ddl-shu-ju-ding-yi-yu-yan-hong-fa-qi" class="header-anchor"></a></h3><p>DDL触发器是当服务器或数据库中发生数据定义语言（主要是以create，drop，alter开头的语句）事件时被激活使用，使用DDL触发器可以防止对数据架构进行某些更改或者记录数据中的更改或操作。</p>
+<h3><span id="deng-lu-hong-fa-qi">登陆触发器</span><a href="#deng-lu-hong-fa-qi" class="header-anchor"></a></h3><p>登陆触发器将响应LOGIN事件而激发存储过程，与SQL server实例建立用户时将引发此事件。登陆触发器将在登录的省份验证阶段完成之后，用户会话实际建立之前激发。因此，来自触发器内部且通常将到达用户的所有消息传送到SQL server错误日志。如果身份验证失败，将不激发登陆触发器。</p>
+<h3><span id="insert-hong-fa-qi">insert触发器</span><a href="#insert-hong-fa-qi" class="header-anchor"></a></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student(</span><br><span class="line">  stu_id <span class="type">int</span> <span class="keyword">identity</span>(<span class="number">1</span>,<span class="number">1</span>)<span class="keyword">primary</span> key,</span><br><span class="line">  stu_name <span class="type">varchar</span>(<span class="number">10</span>),</span><br><span class="line">  stu_gender <span class="type">char</span>(<span class="number">2</span>),</span><br><span class="line">  stu_age <span class="type">int</span></span><br><span class="line">  </span><br><span class="line">)</span><br><span class="line">go</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">trigger</span> trigger_insert</span><br><span class="line"> <span class="keyword">on</span> student</span><br><span class="line"> after <span class="keyword">insert</span></span><br><span class="line"> <span class="keyword">as</span></span><br><span class="line"> <span class="keyword">begin</span></span><br><span class="line">  if object_id(N<span class="string">&#x27;student_sum&#x27;</span>,N<span class="string">&#x27;U&#x27;</span>) <span class="keyword">is</span> <span class="keyword">NULL</span></span><br><span class="line">    <span class="keyword">create</span> <span class="keyword">table</span> student_sum(stuCount <span class="type">int</span> <span class="keyword">default</span>(<span class="number">0</span>));</span><br><span class="line">  <span class="keyword">declare</span> <span class="variable">@stuNumber</span> <span class="type">int</span>;</span><br><span class="line">  <span class="keyword">select</span> <span class="variable">@stuNumber</span> <span class="operator">=</span> <span class="built_in">count</span>(<span class="operator">*</span>)<span class="keyword">from</span> student;</span><br><span class="line">  if <span class="keyword">not</span> <span class="keyword">exists</span> (<span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student_sum)</span><br><span class="line">    <span class="keyword">insert</span> <span class="keyword">into</span> student_sum <span class="keyword">values</span>(<span class="number">0</span>);</span><br><span class="line">  update student_sum <span class="keyword">set</span> stuCount <span class="operator">=</span> <span class="variable">@stuNumber</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student(stu_name,stu_gender,stu_age)<span class="keyword">values</span>(<span class="string">&#x27;吕布&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="number">30</span>);</span><br><span class="line"><span class="keyword">select</span> stuCount 学生总人数 <span class="keyword">from</span> student_sum;    </span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student(stu_name,stu_gender,stu_age)<span class="keyword">values</span>(<span class="string">&#x27;貂蝉&#x27;</span>,<span class="string">&#x27;女&#x27;</span>,<span class="number">30</span>);            </span><br><span class="line"><span class="keyword">select</span> stuCount 学生总人数 <span class="keyword">from</span> student_sum;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student(stu_name,stu_gender,stu_age)<span class="keyword">values</span>(<span class="string">&#x27;曹阿瞒&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="number">40</span>);                </span><br><span class="line"><span class="keyword">select</span> stuCount 学生总人数 <span class="keyword">from</span> student_sum;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210528141825561.png" alt="image-20210528141825561"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">trigger</span> insert_forbidden</span><br><span class="line"> <span class="keyword">on</span> student_sum</span><br><span class="line"> after <span class="keyword">insert</span></span><br><span class="line"> <span class="keyword">as</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  print(<span class="string">&#x27;禁止直接向该表插入记录，操作被禁止&#x27;</span>)</span><br><span class="line">  <span class="keyword">rollback</span> transaction</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> student_sum (stuCount) <span class="keyword">values</span>(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210529155721872.png" alt="image-20210529155721872"></p>
+<h3><span id="update-hong-fa-qi">update 触发器</span><a href="#update-hong-fa-qi" class="header-anchor"></a></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">trigger</span> trig_update</span><br><span class="line"> <span class="keyword">on</span> student</span><br><span class="line"> after update</span><br><span class="line"> <span class="keyword">as</span> </span><br><span class="line"> <span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">declare</span> <span class="variable">@stuCount</span> <span class="type">int</span>;</span><br><span class="line">  <span class="keyword">select</span> <span class="variable">@stuCount</span> <span class="operator">=</span> <span class="built_in">count</span>(<span class="operator">*</span>)<span class="keyword">from</span> student;</span><br><span class="line">  update student_sum <span class="keyword">set</span> stuCount <span class="operator">=</span> <span class="variable">@stuCount</span>;</span><br><span class="line">  <span class="keyword">select</span> stu_id <span class="keyword">as</span> 更新前学生编号,stu_name <span class="keyword">as</span> 更新前学生姓名 <span class="keyword">from</span> deleted</span><br><span class="line">  <span class="keyword">select</span> stu_id <span class="keyword">as</span> 更新后学生编号,stu_name <span class="keyword">as</span> 更新后学生姓名 <span class="keyword">from</span> inserted</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">update student </span><br><span class="line"><span class="keyword">set</span> stu_name <span class="operator">=</span><span class="string">&#x27;张飞&#x27;</span> </span><br><span class="line"><span class="keyword">where</span> stu_id <span class="operator">=</span><span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210529161014271.png" alt="image-20210529161014271"></p>
+<h3><span id="ti-dai-hong-fa-qi">替代触发器</span><a href="#ti-dai-hong-fa-qi" class="header-anchor"></a></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">trigger</span> trig_insteadof</span><br><span class="line"> <span class="keyword">on</span> student</span><br><span class="line"> instead <span class="keyword">of</span> <span class="keyword">insert</span></span><br><span class="line">  <span class="keyword">as</span> </span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">declare</span> <span class="variable">@stuAge</span> <span class="type">int</span>;</span><br><span class="line">  <span class="keyword">select</span> <span class="variable">@stuAge</span><span class="operator">=</span>(<span class="keyword">select</span> stu_age <span class="keyword">from</span> inserted )</span><br><span class="line">if(<span class="variable">@stuAge</span><span class="operator">&gt;</span><span class="number">120</span>)</span><br><span class="line"> <span class="keyword">select</span> <span class="string">&#x27;插入年龄错误 &#x27;</span> <span class="keyword">as</span> <span class="string">&#x27;失败原因 &#x27;</span></span><br><span class="line"> <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">values</span>(<span class="string">&#x27;zilong&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;123&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210529163935193.png" alt="image-20210529163935193"></p>
+<h3><span id="delete-hong-fa-qi">delete触发器</span><a href="#delete-hong-fa-qi" class="header-anchor"></a></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">trigger</span> trig_delete</span><br><span class="line"><span class="keyword">on</span> student</span><br><span class="line">after <span class="keyword">delete</span></span><br><span class="line"><span class="keyword">as</span></span><br><span class="line"> <span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">select</span> stu_id <span class="keyword">as</span> 已删除的学生编号 ,stu_name,stu_gender,stu_age</span><br><span class="line">  <span class="keyword">from</span> deleted</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> student <span class="keyword">where</span> stu_id <span class="operator">=</span><span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210529164636661.png" alt="image-20210529164636661"></p>
+<h3><span id="qian-tao-hong-fa-qi">嵌套触发器</span><a href="#qian-tao-hong-fa-qi" class="header-anchor"></a></h3><p>如果一个触发器在执行操作时调用另一个触发器，而这个触发器又接着调用下一个触发器，那么就形成了嵌套触发器。嵌套触发器在安装时就被启用，但是可以使用系统存储过程sp——configure禁用和重新启用嵌套触发器。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>禁用嵌套触发器</span><br><span class="line">exce sp<span class="operator">-</span>configure <span class="string">&#x27;nested triggers&#x27;</span>,<span class="number">0</span>;</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>启用嵌套触发器</span><br><span class="line">exce sp<span class="operator">-</span>configure <span class="string">&#x27;nested triggers&#x27;</span>,<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<h3><span id="di-gui-hong-fa-qi">递归触发器</span><a href="#di-gui-hong-fa-qi" class="header-anchor"></a></h3><p>递归触发器是指一个触发器从其内部再一次激活该触发器，例如update操作激活的触发器内部 还有一条数据更新语句，那么这个更新语句就有可能激活这个触发器本身，当然，这种递归触发器内部还会有判断语句，只有一定情况下才会执行那个T-sql语句，否则就陷入死循环中。</p>
+<h2><span id="cha-kan-yi-jian-li-de-hong-fa-qi">查看已建立的触发器</span><a href="#cha-kan-yi-jian-li-de-hong-fa-qi" class="header-anchor"></a></h2><h3><span id="1-cha-kan-shu-ju-ku-zhong-suo-you-de-hong-fa-qi">（1）查看数据库中所有的触发器</span><a href="#1-cha-kan-shu-ju-ku-zhong-suo-you-de-hong-fa-qi" class="header-anchor"></a></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use master</span><br><span class="line">go </span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> sysobjects <span class="keyword">where</span> xtype<span class="operator">=</span><span class="string">&#x27;TR&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210529170048135.png" alt="image-20210529170048135"></p>
+<h3><span id="2-shan-chu-hong-fa-qi">（2）删除触发器</span><a href="#2-shan-chu-hong-fa-qi" class="header-anchor"></a></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span>  <span class="keyword">TRIGGER</span> trig_delete </span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/image-20210529171342476.png" alt="image-20210529171342476"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://decodezoom.cn/2021/07/21/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E5%8D%95%E7%AC%94%E8%AE%B0/" data-id="cl3k727600006xgvo20xq47hk" data-title="数据库笔记" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/07/21/%E5%BE%AE%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%88Verilog%20HDL%E8%99%9A%E6%8B%9F%E5%AE%9E%E9%AA%8C%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          微程序控制器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E4%BE%8B%E9%A2%98%E7%AE%80%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">计算机组成原理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/05/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">计算机图形学</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/02/%E6%B1%87%E7%BC%96/">汇编</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/28/java/">Java复习</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/25/suanfa/">算法设计与分析</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/10/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%AE%A2%E8%A7%82%E9%A2%98/">软件工程客观题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+
+  <div style="font-size: 13px">
+    <link rel="stylesheet" href="https://widget.heweather.net/standard/static/css/he-standard.css?v=1.4.0"><script src="https://widget.heweather.net/standard/static/js/he-standard.js?v=1.4.0"></script><script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    本站总访问量  <a id="busuanzi_value_site_pv"></a> 次<br>
+    本站访客数<a id="busuanzi_value_site_uv"></a>人次
+</div>
+
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

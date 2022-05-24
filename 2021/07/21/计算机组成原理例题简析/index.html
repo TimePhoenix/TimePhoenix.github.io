@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?90c91c134971ea31baf103ce4175c5a3";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+  
+
+  
+      
+  
+  <title>计算机组成原理 | TimePhoenix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="1、RISC 2、存储体系 3、输入输出     1、RISC某计算机主频为100MHz，CPI为5。存储器采用哈佛结构。哈佛结构。采用5段流水方式执行指令，各流水段分别是取指(IF)、译码&#x2F;读寄存器(ID)、执行&#x2F;计算有效地址(EX)、访问存储器(M)和结果写回寄存器(WB)。现有下列指令序列进入流水线： ​           I1:  ADD R1，R2，R3      ;R1←(R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成原理">
+<meta property="og:url" content="http://decodezoom.cn/2021/07/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E4%BE%8B%E9%A2%98%E7%AE%80%E6%9E%90/index.html">
+<meta property="og:site_name" content="TimePhoenix">
+<meta property="og:description" content="1、RISC 2、存储体系 3、输入输出     1、RISC某计算机主频为100MHz，CPI为5。存储器采用哈佛结构。哈佛结构。采用5段流水方式执行指令，各流水段分别是取指(IF)、译码&#x2F;读寄存器(ID)、执行&#x2F;计算有效地址(EX)、访问存储器(M)和结果写回寄存器(WB)。现有下列指令序列进入流水线： ​           I1:  ADD R1，R2，R3      ;R1←(R">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/1621676710759.jpg">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/573acbb7e4b0809f241c650f.png">
+<meta property="og:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/ad919e598bb4ab1b77c23066a0691cd8.jpg">
+<meta property="article:published_time" content="2021-07-21T07:15:04.355Z">
+<meta property="article:modified_time" content="2021-12-10T11:47:14.197Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/1621676710759.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="TimePhoenix" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico"> 
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TimePhoenix</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://decodezoom.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-计算机组成原理例题简析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E4%BE%8B%E9%A2%98%E7%AE%80%E6%9E%90/" class="article-date">
+  <time class="dt-published" datetime="2021-07-21T07:15:04.355Z" itemprop="datePublished">2021-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      计算机组成原理
+    </h1>
+  
+
+
+
+  <link rel="icon" href="images/favicon.ico">    
+
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#1-risc">1、RISC</a></li>
+<li><a href="#2-cun-chu-ti-xi">2、存储体系</a></li>
+<li><a href="#3-shu-ru-shu-chu">3、输入输出</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h2><span id="1-risc">1、RISC</span><a href="#1-risc" class="header-anchor"></a></h2><p>某计算机主频为100MHz，CPI为5。存储器采用哈佛结构。哈佛结构。采用5段流水方式执行指令，各流水段分别是取指(IF)、译码/读寄存器(ID)、执行/计算有效地址(EX)、访问存储器(M)和结果写回寄存器(WB)。现有下列指令序列进入流水线：</p>
+<p>​           I1:  ADD R1，R2，R3      ;R1←(R2) + (R3)</p>
+<p>​           I2:  SUB R4，R1，R5      ;R4←(R1) – (R5)</p>
+<p>​           I3:  AND R6，R1，R7      ;R6←(R1) AND (R7)</p>
+<p>​           I4:  OR  R8，R1，R9      ;R8←(R1) OR (R9)</p>
+<p>​           I5:  XOR R10，R1，R11     ;R10←(R1) XOR (R11) </p>
+<p>（1）CPU的时钟周期是<strong>_</strong>ns，平均指令周期是<strong>_</strong>ns，MIPS数是<strong>_</strong>。</p>
+<p>==解==：</p>
+<script type="math/tex; mode=display">
+CPI=\frac{执行程序所需的时钟周期数}{程序中的指令条数}</script><script type="math/tex; mode=display">
+平均指令周期=\frac{1}{MIPS\times10^6}\\
+时钟频率=\frac{1}{CPU时钟周期}</script><script type="math/tex; mode=display">
+MIPS=\frac{主时钟频率}{CPI\times10^6}</script><p>由以上公式可得：</p>
+<script type="math/tex; mode=display">
+MISP=20\\
+CPU时钟周期=10ns\\
+平均指令周期=50ns</script><p>（2）假设CPU不处理数据相关，上述指令序列在流水线中的执行过程示意图如下，那么指令I2、<strong><strong>、和</strong></strong>的执行结果是错误的。</p>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/1621676710759.jpg" alt="1621676710759"></p>
+<p>==解==：cpu不处理数据相关，表明CPU会产生数据冲突，指令I2、I3、I4执行结果是错误的，因为产生了先读后写的问题。</p>
+<p>（3）如果CPU采用后推法（延迟执行）处理数据相关，I2指令的IF段在周期2执行，为使运行结果正确，ID段需推迟到周期<strong><strong>执行。执行这5条指令流水线的加速比是__</strong></strong>（精确到小数点后两位）。提示：可在草稿纸上画出正确执行的时空图。</p>
+<p>==解==：如下表所示，ID应推迟到第六周期</p>
+<script type="math/tex; mode=display">
+加速比=\frac{不使用流水线执行时间}{使用流水线执行时间}</script><p>由下图可知</p>
+<script type="math/tex; mode=display">
+使用流水线执行时间=12\Delta t\\
+不使用流水线执行时间=kn\Delta t =5\times5 \Delta t\\
+加速比=\frac{25}{12}=2.08</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>时</th>
+<th>间</th>
+<th>单</th>
+<th>元</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>指令</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+<td>11</td>
+<td>12</td>
+<td>13</td>
+<td>14</td>
+<td>15</td>
+<td>16</td>
+<td>17</td>
+<td>18</td>
+<td>19</td>
+</tr>
+<tr>
+<td>I1</td>
+<td>IF</td>
+<td>ID</td>
+<td>EX</td>
+<td>M</td>
+<td>WB</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>I2</td>
+<td></td>
+<td>IF</td>
+<td>阻塞</td>
+<td>阻塞</td>
+<td>阻塞</td>
+<td>ID</td>
+<td>EX</td>
+<td>M</td>
+<td>WB</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>I3</td>
+<td></td>
+<td></td>
+<td>IF</td>
+<td>阻塞</td>
+<td>阻塞</td>
+<td>阻塞</td>
+<td>ID</td>
+<td>EX</td>
+<td>M</td>
+<td>WB</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>I4</td>
+<td></td>
+<td></td>
+<td></td>
+<td>阻塞</td>
+<td>IF</td>
+<td>阻塞</td>
+<td>阻塞</td>
+<td>ID</td>
+<td>EX</td>
+<td>M</td>
+<td>WB</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>I5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>IF</td>
+<td>阻塞</td>
+<td>阻塞</td>
+<td>ID</td>
+<td>EX</td>
+<td>M</td>
+<td>WB</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2><span id="2-cun-chu-ti-xi">2、存储体系</span><a href="#2-cun-chu-ti-xi" class="header-anchor"></a></h2><p>某计算机存储器按字节编址，虚拟地址空间大小为16MB，主存地址空间大小为1MB，页面大小为4KB；Cache有8块，采用二路组相联映射方式，共分为4组，块大小为32B。假设当前系统页表和Cache的部分内容如下所示，试回答以下问题</p>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/573acbb7e4b0809f241c650f.png" alt="??1.png"></p>
+<p>（1）虚拟地址、物理地址的总位数分别是<strong><u>24</u></strong>位和<strong><u>20</u></strong>位，其中页内地址的位数是<strong><u>12</u></strong>位（用十进制数填写）。</p>
+<p>(2) 当主存和Cache进行地址映像和变换时，内存物理地址从高到低被划分为_<u>主存区号</u>_、<u>区内块号</u><strong>__和</strong><u>块内地址</u><strong>三部分，它们的宽度分别是</strong><u>13</u><strong>位、</strong><u>2</u><strong>位和_<u>5</u>_</strong>位。（前三空从以下词语中选填：主存区号、cache组号、区内块号、组内块号、组内行号、块内地址、行内地址，后三空用十进制数填写）。</p>
+<p>(3) 虚拟地址002EC0H所在的页面  <u>是</u>（是/否）在主存中，它对应的物理地址是<strong>_13EC0__</strong>H（用16进制填写）；访问该物理地址时Cache<strong>命中</strong>（命中/未命中），因为Cache第<strong>5</strong>行的有效位为<strong>1</strong>并且标记为<strong>_027D_</strong>H。</p>
+<h2><span id="3-shu-ru-shu-chu">3、输入输出</span><a href="#3-shu-ru-shu-chu" class="header-anchor"></a></h2><p>2.</p>
+<p>INTA有效的条件是：信号金国优先级排队电路想CPU提出中断请求，INT有效，CPU能够响应中断时“非INTA”有效。</p>
+<p>中断响应周期需要解决：</p>
+<ul>
+<li>断点及程序状态的保存</li>
+<li>识别中断源</li>
+<li>实现程序转移</li>
+</ul>
+<p>下图是一个查询方式的输入接口电路，该接口包括一个8位的输入数据寄存器、一个1位的状态寄存器以及地址译码和控制逻辑。假定该输入设备的数据传输率为0.5MB/s。</p>
+<p><img src="https://gitee.com/the-stars-dont-wait/cludimage/raw/master/img/ad919e598bb4ab1b77c23066a0691cd8.jpg" alt="6T22.jpg"></p>
+<p>当输入设备准备好数据，送往数据寄存器的输入端D端，并产生一个脉冲信号STB，使状态寄存器<strong>置1</strong>（置1/清0），表示输入数据已准备就绪（Ready）；CPU从外设读入数据的同时把状态位Ready<strong>_置0</strong>（置1/清0）。</p>
+<p>2.CPU要从外设输入数据时分两步完成。第一步，先读取<strong>_状态_</strong>（数据/状态）寄存器，并判断Ready位（图中是D0位）的值，如果Ready=<strong>0_</strong>（1/0），表示未准备就绪，则继续检测状态，此时CPU处于等待状态；如果Ready=<strong>_</strong>1（1/0），则执行第二步，执行输入指令从<strong>_数据_</strong>（数据/状态）寄存器读取数据。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://decodezoom.cn/2021/07/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E4%BE%8B%E9%A2%98%E7%AE%80%E6%9E%90/" data-id="cl3k727630008xgvocj6b48sx" data-title="计算机组成原理" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/07/21/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E5%8D%95%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          数据库笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/21/%E8%AE%A4%E8%AF%86RISC-V/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">认识RISC-V</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/05/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">计算机图形学</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/02/%E6%B1%87%E7%BC%96/">汇编</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/28/java/">Java复习</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/25/suanfa/">算法设计与分析</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/10/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%AE%A2%E8%A7%82%E9%A2%98/">软件工程客观题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+
+  <div style="font-size: 13px">
+    <link rel="stylesheet" href="https://widget.heweather.net/standard/static/css/he-standard.css?v=1.4.0"><script src="https://widget.heweather.net/standard/static/js/he-standard.js?v=1.4.0"></script><script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    本站总访问量  <a id="busuanzi_value_site_pv"></a> 次<br>
+    本站访客数<a id="busuanzi_value_site_uv"></a>人次
+</div>
+
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
